@@ -53,7 +53,7 @@ function EVENT:Begin()
 
                     -- Fade the screen
                     p:ScreenFade(SCREENFADE.IN, Color(0, 0, 0, 255), 1, fade_time)
-                    Randomat:SmallNotify("Five years later...", fade_time, nil, true, COLOR_WHITE)
+                    Randomat:SmallNotify("Five years later...", fade_time, nil, true, true, COLOR_WHITE)
                 end
             end
             return WIN_NONE
