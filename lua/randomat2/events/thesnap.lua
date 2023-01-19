@@ -125,15 +125,3 @@ function EVENT:GetConVars()
 end
 
 Randomat:register(EVENT)
-
-hook.Add("TTTPrepareRound", "TTTTrophiesAdminAbusePrepareRound", function()
-    hook.Add("TTTRandomatCommand", "TTTTrophiesAdminAbuseDoesntWork", function(ply, cmd, args)
-        print("this hook doesn't work...")
-    end)
-
-    hook.Remove("TTTPrepareRound", "TTTTrophiesAdminAbusePrepareRound")
-end)
-
-hook.Add("TTTRandomatCommand", "TTTTrophiesAdminAbuseWorks", function(ply, cmd, args)
-    print("this hook works!")
-end)
