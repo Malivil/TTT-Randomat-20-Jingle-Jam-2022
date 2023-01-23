@@ -14,6 +14,19 @@ _ttt_randomat_jinglealltheway_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_jinglealltheway_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
 _ttt_randomat_jinglealltheway_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 
+## Secret Santa
+_Suggested By_: Noxx\
+Every player gets a choice of presents to send, in secret. Will you be nice... or naughty?
+\
+\
+**ConVars**
+\
+_ttt_randomat_secretsanta_ - Default: 1 - Whether this event is enabled.\
+_ttt_randomat_secretsanta_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
+_ttt_randomat_secretsanta_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.\
+_randomat_secretsanta_niceoptions_ - Default: 2 - The number of nice gift options to give each player.\
+_randomat_secretsanta_naughtyoptions_ - Default: 1 - The number of naughty gift options to give each player.
+
 ## The Snap
 _Suggested By_: Dragna\
 Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends. If this causes the round to be won by the innocents, everyone snapped will respawn exactly where they wre.
