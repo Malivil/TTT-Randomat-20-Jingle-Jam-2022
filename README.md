@@ -14,6 +14,18 @@ _ttt_randomat_jinglealltheway_ - Default: 1 - Whether this event is enabled.\
 _ttt_randomat_jinglealltheway_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
 _ttt_randomat_jinglealltheway_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 
+## Jingle Jam 2022
+_Suggested By_: Malivil\
+Let's raise some credits for charity! Open the shop menu to donate
+\
+\
+**ConVars**
+\
+_ttt_randomat_jinglejam2022_ - Default: 1 - Whether this event is enabled.\
+_ttt_randomat_jinglejam2022_min_players_ - Default: 0 - The minimum number of players required for this event to start.\
+_ttt_randomat_jinglejam2022_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.\
+_randomat_jinglejam2022_mult_ - Default: 1 - The multiplier used when calculating the number of credits to win.
+
 ## Secret Santa
 _Suggested By_: Noxx\
 Every player gets a choice of presents to send, in secret. Will you be nice... or naughty?

@@ -35,10 +35,8 @@ function EVENT:Begin()
         local goblinAlive = player.IsRoleLiving(ROLE_LOOTGOBLIN)
         if not goblinAlive then
             local message = string.Capitalize(ROLE_STRINGS_EXT[ROLE_LOOTGOBLIN]) .. " has been killed! Christmas is cancelled!"
-            for _, p in ipairs(player.GetAll()) do
-                p:PrintMessage(HUD_PRINTTALK, message)
-                p:PrintMessage(HUD_PRINTCENTER, message)
-            end
+            PrintMessage(HUD_PRINTTALK, message)
+            PrintMessage(HUD_PRINTCENTER, message)
             return
         end
 
