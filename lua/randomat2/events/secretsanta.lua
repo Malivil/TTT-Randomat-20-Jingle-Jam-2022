@@ -1,3 +1,32 @@
+SECRETSANTA = {
+    NiceChoices = {},
+    NaughtyChoices = {}
+}
+
+function SECRETSANTA:RegisterChoice(choice, isNaughty)
+    -- Make sure this is set correctly
+    choice.Id = choice.Id or choice.id or choice.ID
+
+    if SECRETSANTA.NiceChoices[choice.Id] or SECRETSANTA.NaughtyChoices[choice.Id] then
+        ErrorNoHalt("[RANDOMAT] Secret Santa choice already exists with ID '" .. choice.Id .. "'")
+        return
+    end
+
+    if isNaughty then
+        SECRETSANTA.NaughtyChoices[choice.Id] = choice
+    else
+        SECRETSANTA.NiceChoices[choice.Id] = choice
+    end
+end
+
+local function RegisterChoices()
+    local files, _ = file.Find("randomat2/events/secretsanta_choices/*.lua", "LUA")
+    for _, fil in ipairs(files) do
+        include("randomat2/events/secretsanta_choices/" .. fil)
+    end
+end
+RegisterChoices()
+
 local EVENT = {}
 
 util.AddNetworkString("RdmtSecretSantaBegin")
@@ -17,32 +46,6 @@ EVENT.Categories = {"biased_traitor", "biased", "moderateimpact"}
 
 local plyRecipients = {}
 local plyChoices = {}
-local niceChoices = {
-    ["extrahp"] = {
-        name = "Extra Health",
-        fn = function(ply)
-            -- TODO
-            print(ply:Nick() .. " now has extra health!")
-        end
-    },
-    ["unlimitedammo"] = {
-        name = "Unlimited Ammo",
-        fn = function(ply)
-            -- TODO
-            print(ply:Nick() .. " now has unlimited ammo!")
-        end
-    }
-}
-local naughtyChoices = {
-    ["poison"] = {
-        name = "Poison",
-        fn = function(ply)
-            -- TODO
-            print(ply:Nick() .. " is now poisoned!")
-        end,
-        naughty = true
-    }
-}
 
 local function ChooseRandomOptions(options, choices, choiceKeys, choiceCount, choiceOptions)
     local chosen = {}
@@ -59,7 +62,7 @@ local function ChooseRandomOptions(options, choices, choiceKeys, choiceCount, ch
         local choice = choices[key]
         table.insert(options, {
             id = key,
-            name = choice.name
+            name = choice.name or choice.Name
         })
         table.insert(chosen, idx)
         count = count + 1
@@ -85,16 +88,16 @@ function EVENT:Begin()
         plyRecipients[current] = recip
     end
 
-    local niceKeys = table.GetKeys(niceChoices)
-    local niceCount = table.Count(niceChoices)
+    local niceKeys = table.GetKeys(SECRETSANTA.NiceChoices)
+    local niceCount = table.Count(SECRETSANTA.NiceChoices)
     local niceOptions = GetConVar("randomat_secretsanta_niceoptions"):GetInt()
+    local naughtyKeys = table.GetKeys(SECRETSANTA.NaughtyChoices)
+    local naughtyCount = table.Count(SECRETSANTA.NaughtyChoices)
     local naughtyOptions = GetConVar("randomat_secretsanta_naughtyoptions"):GetInt()
-    local naughtyCount = table.Count(naughtyChoices)
-    local naughtyKeys = table.GetKeys(naughtyChoices)
     for _, ply in ipairs(alivePlayers) do
         local options = {}
-        ChooseRandomOptions(options, niceChoices, niceKeys, niceCount, niceOptions)
-        ChooseRandomOptions(options, naughtyChoices, naughtyKeys, naughtyCount, naughtyOptions)
+        ChooseRandomOptions(options, SECRETSANTA.NiceChoices, niceKeys, niceCount, niceOptions)
+        ChooseRandomOptions(options, SECRETSANTA.NaughtyChoices, naughtyKeys, naughtyCount, naughtyOptions)
 
         -- Send options to pairs
         recip = plyRecipients[ply:SteamID64()]
@@ -140,7 +143,7 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
 
     local choiceId = net.ReadString()
     -- Get the choice from either list
-    local choice = niceChoices[choiceId] or naughtyChoices[choiceId]
+    local choice = SECRETSANTA.NiceChoices[choiceId] or SECRETSANTA.NaughtyChoices[choiceId]
     if not choice then
         ply:PrintMessage(HUD_PRINTTALK, "'" .. choiceId .. "' is not a valid choice.")
         return
@@ -159,7 +162,7 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
     end
 
     -- Give their present to their target
-    choice.fn(plyRecipients[sid64])
+    choice:Choose(ply, plyRecipients[sid64])
 end)
 
 Randomat:register(EVENT)
