@@ -154,10 +154,14 @@ net.Receive("RdmtJingleJam2022End", function()
 end)
 
 net.Receive("RdmtJingleJam2022Donation", function()
-    local credits = net.ReadUInt(8)
-
     -- Save the donation amount
-    donationCurrent = donationCurrent + credits
+    donationCurrent = net.ReadUInt(8)
     -- Figure out if we're done
     donationMet = donationCurrent >= donationGoal
+end)
+
+net.Receive("RdmtJingleJam2022RoundSound", function()
+    local soundPath = net.ReadString()
+    print("Playing ", soundPath)
+    surface.PlaySound(soundPath)
 end)

@@ -6,9 +6,11 @@ local EVENT = {}
 util.AddNetworkString("RdmtJingleJam2022Begin")
 util.AddNetworkString("RdmtJingleJam2022End")
 util.AddNetworkString("RdmtJingleJam2022Donation")
+util.AddNetworkString("RdmtJingleJam2022RoundSound")
 
 resource.AddSingleFile("materials/vgui/ttt/Pattern_money.png")
 resource.AddSingleFile("materials/vgui/ttt/Pattern_money_gold.png")
+resource.AddSingleFile("sound/randomat/wholikestoparty.mp3")
 
 CreateConVar("randomat_jinglejam2022_mult", 1, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The multiplier used when calculating the number of credits to win", 0.1, 5)
 
@@ -21,11 +23,15 @@ local donationGoal = nil
 local donationCurrent = 0
 local donationMet = false
 
+local winSoundLength = 10
+local roundEndTime = nil
+
 local oldCanLootCredits
 function EVENT:Begin()
     donationGoal = nil
     donationCurrent = 0
     donationMet = false
+    roundEndTime = nil
 
     -- Let everyone loot credits
     if not oldCanLootCredits then
@@ -48,10 +54,21 @@ function EVENT:Begin()
     -- If we've met the donation goal, innocents win
     self:AddHook("TTTCheckForWin", function()
         if donationMet then
-            -- TODO: Play win sound?
-               -- Ensure we only place it once
-               -- Also ensure we block normal round win sounds
-               -- Delay win (but also prevent other wins) while sound is playing
+            -- Play win sound
+            if roundEndTime == nil then
+                roundEndTime = CurTime()
+                self:DisableRoundEndSounds()
+                net.Start("RdmtJingleJam2022RoundSound")
+                net.WriteString("randomat/wholikestoparty.mp3")
+                net.Broadcast()
+            end
+
+            -- Block round wins until the sound is done
+            if roundEndTime + winSoundLength > CurTime() then
+                return WIN_NONE
+            end
+
+            -- Then have the innocents win
             return WIN_INNOCENT
         end
     end)
@@ -117,20 +134,24 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
         name = ply:Nick()
     end
 
+    -- Save the donation amount
+    donationCurrent = donationCurrent + credits
+    -- Figure out if we're done
+    donationMet = donationCurrent >= donationGoal
+
     -- Tell everyone
     local message = name .. " donated " .. credits .. creditName .. " to charity!"
     if donationMessage and #donationMessage > 0 then
         message = message .. "\n\t" .. donationMessage
+    end
+    if donationMet then
+        message = message .. "\n\n" .. "GOAL REACHED!"
     end
     PrintMessage(HUD_PRINTCENTER, message)
     PrintMessage(HUD_PRINTTALK, message)
 
     -- Subtract the donation from the player
     ply:AddCredits(-credits)
-    -- Save the donation amount
-    donationCurrent = donationCurrent + credits
-    -- Figure out if we're done
-    donationMet = donationCurrent >= donationGoal
     -- And broadcast the change to everyone
     net.Start("RdmtJingleJam2022Donation")
     net.WriteUInt(donationCurrent, 8)

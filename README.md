@@ -53,3 +53,5 @@ _randomat_thesnap_fadetime_ - Default: 5 - The amount of time the "Five years la
 _randomat_thesnap_deathdelay_ - Default: 5 - The amount of time before the chosen players are killed.\
 
 ## Special Thanks
+- Angela of the Lonely Yogs for helping find resources for the "Jingle Jam 2022" event
+- Kevin Macleod for the donation complete song used in the "Jingle Jam 2022" event, [Who Likes to Party](https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1200075)
