@@ -23,8 +23,7 @@ local function CreateDonateMenu(dsheet)
 
     -- Create control to select the number of credits
     local dslider = vgui.Create("DNumSlider", dform)
-    dslider:SetPos(50, 50)
-    dslider:SetSize(100, 100)
+    dslider:SetSize(100, 25)
     dslider:SetText(GetTranslation("equip_donation_amount"))
     dslider:SetMinMax(0, client:GetCredits())
     dslider:SetDefaultValue(0)
@@ -34,16 +33,24 @@ local function CreateDonateMenu(dsheet)
         dsubmit:SetDisabled(num <= 0)
     end
 
+    local dtextentry = vgui.Create("DTextEntry", dform)
+    dtextentry:SetSize(100, 25)
+    dtextentry:SetPlaceholderText("Donation Message")
+    dtextentry.OnGetFocus = function() dsheet:GetParent():SetKeyboardInputEnabled(true) end
+    dtextentry.OnLoseFocus = function() dsheet:GetParent():SetKeyboardInputEnabled(false) end
+
     dsubmit.DoClick = function(s)
         -- Get the value from the text area instead of the slider itself because the slider value is a float
         -- and rounding it is not accurate. We want the value shown to the user to be what gets sent to the server.
         local credits = dslider:GetTextArea():GetInt()
         net.Start("RdmtJingleJam2022Donation")
         net.WriteUInt(credits, 8)
+        net.WriteString(dtextentry:GetValue())
         net.SendToServer()
     end
 
     dform:AddItem(dslider)
+    dform:AddItem(dtextentry)
     dform:AddItem(dsubmit)
 
     return dform

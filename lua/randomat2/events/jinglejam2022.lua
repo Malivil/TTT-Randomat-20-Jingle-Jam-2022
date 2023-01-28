@@ -38,6 +38,7 @@ function EVENT:Begin()
             -- TODO: Play win sound?
                -- Ensure we only place it once
                -- Also ensure we block normal round win sounds
+               -- Delay win (but also prevent other wins) while sound is playing
             return WIN_INNOCENT
         end
     end)
@@ -87,7 +88,11 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
         creditName = creditName .. "s"
     end
 
+    local donationMessage = net.ReadString()
     local message = ply:Nick() .. " donated " .. credits .. creditName .. " to charity!"
+    if donationMessage and #donationMessage > 0 then
+        message = message .. "\n\t" .. donationMessage
+    end
     PrintMessage(HUD_PRINTCENTER, message)
     PrintMessage(HUD_PRINTTALK, message)
 
