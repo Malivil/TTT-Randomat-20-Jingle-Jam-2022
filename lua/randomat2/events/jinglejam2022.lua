@@ -88,8 +88,20 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
         creditName = creditName .. "s"
     end
 
+    -- Get the donator's message
     local donationMessage = net.ReadString()
-    local message = ply:Nick() .. " donated " .. credits .. creditName .. " to charity!"
+
+    -- Get the donator's name
+    local anon = net.ReadBool()
+    local name
+    if anon then
+        name = "No Name Provided"
+    else
+        name = ply:Nick()
+    end
+
+    -- Tell everyone
+    local message = name .. " donated " .. credits .. creditName .. " to charity!"
     if donationMessage and #donationMessage > 0 then
         message = message .. "\n\t" .. donationMessage
     end

@@ -35,9 +35,13 @@ local function CreateDonateMenu(dsheet)
 
     local dtextentry = vgui.Create("DTextEntry", dform)
     dtextentry:SetSize(100, 25)
-    dtextentry:SetPlaceholderText("Donation Message")
+    dtextentry:SetPlaceholderText(GetTranslation("equip_donation_message"))
     dtextentry.OnGetFocus = function() dsheet:GetParent():SetKeyboardInputEnabled(true) end
     dtextentry.OnLoseFocus = function() dsheet:GetParent():SetKeyboardInputEnabled(false) end
+
+    local dcheckbox = vgui.Create("DCheckBoxLabel", dform)
+    dcheckbox:SetSize(100, 25)
+    dcheckbox:SetText(GetTranslation("equip_donation_anon"))
 
     dsubmit.DoClick = function(s)
         -- Get the value from the text area instead of the slider itself because the slider value is a float
@@ -46,11 +50,13 @@ local function CreateDonateMenu(dsheet)
         net.Start("RdmtJingleJam2022Donation")
         net.WriteUInt(credits, 8)
         net.WriteString(dtextentry:GetValue())
+        net.WriteBool(dcheckbox:GetChecked())
         net.SendToServer()
     end
 
     dform:AddItem(dslider)
     dform:AddItem(dtextentry)
+    dform:AddItem(dcheckbox)
     dform:AddItem(dsubmit)
 
     return dform
@@ -64,6 +70,8 @@ net.Receive("RdmtJingleJam2022Begin", function()
     LANG.AddToLanguage("english", "donate_no_credits", "No credits available for donation")
     LANG.AddToLanguage("english", "equip_tooltip_donate", "Donate credits to charity")
     LANG.AddToLanguage("english", "equip_donation_amount", "Donate Amount")
+    LANG.AddToLanguage("english", "equip_donation_message", "Donate Message")
+    LANG.AddToLanguage("english", "equip_donation_anon", "Donate Anonymously")
 
     client = LocalPlayer()
     donationGoal = net.ReadUInt(8)
