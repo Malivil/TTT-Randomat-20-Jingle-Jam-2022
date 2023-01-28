@@ -67,28 +67,41 @@ net.Receive("RdmtJingleJam2022Begin", function()
         return true
     end)
 
-    hook.Add("DrawOverlay", "RdmtJingleJam2022DrawOverlay", function()
+    local progressTexture = Material("vgui/ttt/Pattern_money.png")
+    local completeTexture = Material("vgui/ttt/Pattern_money_gold.png")
+    hook.Add("HUDPaint", "RdmtJingleJam2022HUDPaint", function()
+        donationMet = true
         local percentFilled = donationCurrent / donationGoal
         if donationMet then
             percentFilled = 1
         end
 
-        -- TODO: Draw the donation tracker
+        -- Draw the donation tracker
+        local borderThickness = 2
         local margin = 20
-        local height = ScrH() - (margin * 2)
-        local width = 100
+        local barHeight = 780
+        local barWidth = 98
+        local barTop = (ScrH() - barHeight) / 2
+        local barLeft = ScrW() - margin - barWidth - (borderThickness * 2)
 
-        local barContainer = vgui.Create("DPanel")
-        barContainer:SetPos(ScrW() - margin - width)
-        barContainer:SetSize(width, height)
+        -- Draw border
+        surface.SetDrawColor(255, 255, 255, 255)
+        surface.DrawOutlinedRect(barLeft, barTop, barWidth + (borderThickness * 2), barHeight + (borderThickness * 2), borderThickness)
 
-        -- TODO: Would this be better with render or draw?
+        -- Draw texture
+        local filledHeight = barHeight * percentFilled
+        surface.SetMaterial(donationMet and completeTexture or progressTexture)
+        -- Use a scissor rect to cut the texture off at the correct percent complete
+        render.SetScissorRect(0, ScrH() - barTop - filledHeight + borderThickness, ScrW(), ScrH(), true)
+            surface.DrawTexturedRect(barLeft + borderThickness, ScrH() - barTop - barHeight + borderThickness, barWidth, barHeight)
+        render.SetScissorRect(0, 0, 0, 0, false)
+        draw.NoTexture()
     end)
 end)
 
 net.Receive("RdmtJingleJam2022End", function()
     hook.Remove("TTTEquipmentTabs", "RdmtJingleJam2022DonationTab")
-    hook.Remove("DrawOverlay", "RdmtJingleJam2022DrawOverlay")
+    hook.Remove("HUDPaint", "RdmtJingleJam2022HUDPaint")
 end)
 
 net.Receive("RdmtJingleJam2022Donation", function()
