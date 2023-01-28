@@ -1,3 +1,6 @@
+local plymeta = FindMetaTable("Player")
+if not plymeta then return end
+
 local client = nil
 local donationGoal = nil
 local donationCurrent = 0
@@ -62,6 +65,7 @@ local function CreateDonateMenu(dsheet)
     return dform
 end
 
+local oldCanLootCredits
 net.Receive("RdmtJingleJam2022Begin", function()
     local GetTranslation = LANG.GetTranslation
     LANG.AddToLanguage("english", "donate_name", "Donate")
@@ -77,6 +81,15 @@ net.Receive("RdmtJingleJam2022Begin", function()
     donationGoal = net.ReadUInt(8)
     donationCurrent = 0
     donationMet = false
+
+    -- Let everyone loot credits
+    if not oldCanLootCredits then
+        oldCanLootCredits = plymeta.CanLootCredits
+        function plymeta:CanLootCredits(active_only)
+            if active_only and not self:IsActive() then return false end
+            return true
+        end
+    end
 
     hook.Add("TTTEquipmentTabs", "RdmtJingleJam2022DonationTab", function(dsheet)
         local ddonate = CreateDonateMenu(dsheet)
@@ -130,6 +143,12 @@ net.Receive("RdmtJingleJam2022Begin", function()
 end)
 
 net.Receive("RdmtJingleJam2022End", function()
+    -- Reset this
+    if oldCanLootCredits then
+        plymeta.CanLootCredits = oldCanLootCredits
+        oldCanLootCredits = nil
+    end
+
     hook.Remove("TTTEquipmentTabs", "RdmtJingleJam2022DonationTab")
     hook.Remove("HUDPaint", "RdmtJingleJam2022HUDPaint")
 end)

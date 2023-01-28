@@ -1,3 +1,6 @@
+local plymeta = FindMetaTable("Player")
+if not plymeta then return end
+
 local EVENT = {}
 
 util.AddNetworkString("RdmtJingleJam2022Begin")
@@ -18,10 +21,20 @@ local donationGoal = nil
 local donationCurrent = 0
 local donationMet = false
 
+local oldCanLootCredits
 function EVENT:Begin()
     donationGoal = nil
     donationCurrent = 0
     donationMet = false
+
+    -- Let everyone loot credits
+    if not oldCanLootCredits then
+        oldCanLootCredits = plymeta.CanLootCredits
+        function plymeta:CanLootCredits(active_only)
+            if active_only and not self:IsActive() then return false end
+            return true
+        end
+    end
 
     local alivePlayers = self:GetAlivePlayers()
     local mult = GetConVar("randomat_jinglejam2022_mult"):GetFloat()
@@ -42,11 +55,15 @@ function EVENT:Begin()
             return WIN_INNOCENT
         end
     end)
-
-    -- TODO: Earn credits somehow
 end
 
 function EVENT:End()
+    -- Reset this
+    if oldCanLootCredits then
+        plymeta.CanLootCredits = oldCanLootCredits
+        oldCanLootCredits = nil
+    end
+
     net.Start("RdmtJingleJam2022End")
     net.Broadcast()
 end
