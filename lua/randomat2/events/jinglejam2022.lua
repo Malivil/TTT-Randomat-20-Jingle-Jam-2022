@@ -35,6 +35,9 @@ function EVENT:Begin()
     -- If we've met the donation goal, innocents win
     self:AddHook("TTTCheckForWin", function()
         if donationMet then
+            -- TODO: Play win sound?
+               -- Ensure we only place it once
+               -- Also ensure we block normal round win sounds
             return WIN_INNOCENT
         end
     end)
