@@ -70,7 +70,7 @@ net.Receive("RdmtJingleJam2022Begin", function()
     local progressTexture = Material("vgui/ttt/Pattern_money.png")
     local completeTexture = Material("vgui/ttt/Pattern_money_gold.png")
     hook.Add("HUDPaint", "RdmtJingleJam2022HUDPaint", function()
-        local percentFilled = donationCurrent / donationGoal
+        local percentFilled = 0.5--donationCurrent / donationGoal
         if donationMet then
             percentFilled = 1
         end
@@ -91,7 +91,7 @@ net.Receive("RdmtJingleJam2022Begin", function()
         local filledHeight = barHeight * percentFilled
         surface.SetMaterial(donationMet and completeTexture or progressTexture)
         -- Use a scissor rect to cut the texture off at the correct percent complete
-        render.SetScissorRect(0, ScrH() - barTop - filledHeight + borderThickness, ScrW(), ScrH(), true)
+        render.SetScissorRect(barLeft + borderThickness, ScrH() - barTop - filledHeight + borderThickness, barLeft + (borderThickness * 2) + barWidth, ScrH(), true)
             surface.DrawTexturedRect(barLeft + borderThickness, ScrH() - barTop - barHeight + borderThickness, barWidth, barHeight)
         render.SetScissorRect(0, 0, 0, 0, false)
         draw.NoTexture()
