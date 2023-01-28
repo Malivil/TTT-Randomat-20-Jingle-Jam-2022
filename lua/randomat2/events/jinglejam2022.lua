@@ -69,6 +69,8 @@ function EVENT:GetConVars()
 end
 
 net.Receive("RdmtJingleJam2022Donation", function(len, ply)
+    if donationMet then return end
+
     local credits = net.ReadUInt(8)
     if credits > ply:GetCredits() then
         local errorMessage = "You don't have enough credits to donate " .. credits
@@ -76,6 +78,9 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
         ply:PrintMessage(HUD_PRINTTALK, errorMessage)
         return
     end
+
+    -- Make sure we don't donate more credits than are needed for the goal
+    credits = math.min(credits, donationGoal - donationCurrent)
 
     local creditName = " credit"
     if credits > 1 then

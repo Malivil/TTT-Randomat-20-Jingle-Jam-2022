@@ -35,7 +35,9 @@ local function CreateDonateMenu(dsheet)
     end
 
     dsubmit.DoClick = function(s)
-        local credits = dslider:GetValue()
+        -- Get the value from the text area instead of the slider itself because the slider value is a float
+        -- and rounding it is not accurate. We want the value shown to the user to be what gets sent to the server.
+        local credits = dslider:GetTextArea():GetInt()
         net.Start("RdmtJingleJam2022Donation")
         net.WriteUInt(credits, 8)
         net.SendToServer()
@@ -69,6 +71,7 @@ net.Receive("RdmtJingleJam2022Begin", function()
 
     local progressTexture = Material("vgui/ttt/Pattern_money.png")
     local completeTexture = Material("vgui/ttt/Pattern_money_gold.png")
+    local donationBoxColor = Color(195, 15, 68, 255)
     hook.Add("HUDPaint", "RdmtJingleJam2022HUDPaint", function()
         local percentFilled = donationCurrent / donationGoal
         if donationMet then
@@ -95,6 +98,19 @@ net.Receive("RdmtJingleJam2022Begin", function()
             surface.DrawTexturedRect(barLeft + borderThickness, ScrH() - barTop - barHeight + borderThickness, barWidth, barHeight)
         render.SetScissorRect(0, 0, 0, 0, false)
         draw.NoTexture()
+
+        -- Draw the donation amounts
+        local donationMargin = 20
+        local donationInnerMargin = 4
+        local donationHeight = 30
+        local text = donationCurrent .. " / " .. donationGoal
+        draw.RoundedBox(3, barLeft + borderThickness, barTop - donationMargin - donationHeight, barWidth, donationHeight, donationBoxColor)
+
+        surface.SetFont("Trebuchet22")
+        local textWidth, _ = surface.GetTextSize(text)
+        surface.SetTextColor(255, 255, 255, 255)
+        surface.SetTextPos(barLeft + ((barWidth - textWidth) / 2) + borderThickness, barTop - donationMargin + donationInnerMargin - donationHeight)
+        surface.DrawText(text)
     end)
 end)
 
