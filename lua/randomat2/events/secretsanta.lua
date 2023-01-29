@@ -123,7 +123,25 @@ function EVENT:GetConVars()
             })
         end
     end
-    return sliders
+
+    local checks = {}
+    local textboxes = {}
+
+    -- Add all the convars from the naughty choices
+    for _, choice in pairs(SECRETSANTA.NaughtyChoices) do
+        if choice.AddConVars then
+            choice:AddConVars(sliders, checks, textboxes)
+        end
+    end
+
+    -- Add all the convars from the nice choices
+    for _, choice in pairs(SECRETSANTA.NiceChoices) do
+        if choice.AddConVars then
+            choice:AddConVars(sliders, checks, textboxes)
+        end
+    end
+
+    return sliders, checks, textboxes
 end
 
 net.Receive("RdmtSecretSantaChoose", function(len, ply)
