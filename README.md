@@ -54,4 +54,5 @@ _randomat_thesnap_deathdelay_ - Default: 5 - The amount of time before the chose
 
 ## Special Thanks
 - Angela of the Lonely Yogs for helping find resources for the "Jingle Jam 2022" event
+- Harry and Nick of the Yogscast for providing the bar texture for the "Jingle Jam 2022" event
 - Kevin Macleod for the donation complete song used in the "Jingle Jam 2022" event, [Who Likes to Party](https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1200075)

@@ -19,14 +19,6 @@ function SECRETSANTA:RegisterChoice(choice, isNaughty)
     end
 end
 
-local function RegisterChoices()
-    local files, _ = file.Find("randomat2/events/secretsanta_choices/*.lua", "LUA")
-    for _, fil in ipairs(files) do
-        include("randomat2/events/secretsanta_choices/" .. fil)
-    end
-end
-RegisterChoices()
-
 local EVENT = {}
 
 util.AddNetworkString("RdmtSecretSantaBegin")
