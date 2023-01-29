@@ -3,7 +3,7 @@ local CHOICE = {}
 CHOICE.Name = "Extra Health"
 CHOICE.Id = "extrahp"
 
-local extrahp_amount = CreateConVar("randomat_secretsanta_extrahp_amount", "50", FCVAR_NONE, "The amount of HP to give the target", 1, 100)
+local extrahp_amount = CreateConVar("randomat_secretsanta_extrahp_amount", "50", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The amount of HP to give the target.", 1, 100)
 
 function CHOICE:Choose(owner, target)
     local hp = extrahp_amount:GetInt()

@@ -61,9 +61,25 @@ local function ChooseRandomOptions(options, choices, choiceKeys, choiceCount, ch
     end
 end
 
+local function CleanUpChoices()
+    for _, choice in pairs(SECRETSANTA.NaughtyChoices) do
+        if choice.CleanUp then
+            choice:CleanUp()
+        end
+    end
+    for _, choice in pairs(SECRETSANTA.NiceChoices) do
+        if choice.CleanUp then
+            choice:CleanUp()
+        end
+    end
+end
+
 function EVENT:Begin()
     plyRecipients = {}
     plyChoices = {}
+
+    -- Ensure all choices are reset back to their default state
+    CleanUpChoices()
 
     -- Generate Santa/Recipient pairs
     local alivePlayers = self:GetAlivePlayers(true)
@@ -104,6 +120,7 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
+    CleanUpChoices()
     net.Start("RdmtSecretSantaEnd")
     net.Broadcast()
 end
