@@ -11,12 +11,9 @@ local reducehp_factor = CreateConVar("randomat_secretsanta_reducehp_factor", "0.
 
 function CHOICE:Choose(owner, target)
     local factor = 1 - reducehp_factor:GetFloat()
-    print("Factor:", factor)
     local hp = MathRound(target:Health() * factor)
-    print("HP:", hp)
     target:SetHealth(hp)
     local max = MathRound(target:GetMaxHealth() * factor)
-    print("Max:", max)
     target:SetMaxHealth(max)
 end
 

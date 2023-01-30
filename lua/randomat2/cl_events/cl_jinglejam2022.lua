@@ -162,6 +162,5 @@ end)
 
 net.Receive("RdmtJingleJam2022RoundSound", function()
     local soundPath = net.ReadString()
-    print("Playing ", soundPath)
     surface.PlaySound(soundPath)
 end)
