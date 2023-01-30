@@ -1,6 +1,7 @@
 
 local secretSantaFrame = nil
 local targetPlayer = nil
+local choiceName = nil
 
 net.Receive("RdmtSecretSantaBegin", function()
     local ply = LocalPlayer()
@@ -27,7 +28,7 @@ net.Receive("RdmtSecretSantaBegin", function()
     end
 
     list.OnRowSelected = function(lst, index, pnl)
-        local choiceName = pnl:GetColumnText(1)
+        choiceName = pnl:GetColumnText(1)
         local choice = pnl:GetColumnText(2)
         net.Start("RdmtSecretSantaChoose")
         net.WriteString(choice)
@@ -39,8 +40,12 @@ net.Receive("RdmtSecretSantaBegin", function()
     end
 
     hook.Add("TTTBodySearchPopulate", "RdmtSecretSantaSearchPopulate", function(search, raw)
+        local message = "Secret Santa\n\tRecipient: " .. targetPlayer
+        if choiceName ~= nil then
+            message = message .. "\n\tGift: " .. choiceName
+        end
         search["rdmtsecretsanta"] = {
-            text = "Secret Santa Recipient: " .. targetPlayer,
+            text = message,
             img = "vgui/ttt/icon_secretsanta",
             p = 3
         }
