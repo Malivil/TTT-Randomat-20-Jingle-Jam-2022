@@ -3,7 +3,7 @@ local CHOICE = {}
 CHOICE.Name = "Speed Boost"
 CHOICE.Id = "speedboost"
 
-local speedboost_mult = CreateConVar("randomat_secretsanta_speedboost_mult", 1.25, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The speed multiplier (1.25 = 125%, a 25% boost).", 1, 2)
+local speedboost_mult = CreateConVar("randomat_secretsanta_speedboost_mult", 1.25, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The speed multiplier (1.25 = 125%, a 25% boost).", 1.05, 2)
 
 local multIds = {}
 local multIdPrefix = "SecretSantaSpeedBoost_"
@@ -23,7 +23,6 @@ function CHOICE:Choose(owner, target)
         if ply ~= target or not ply:Alive() or ply:IsSpec() then return end
         table.insert(mults, mult)
     end)
-
 end
 
 function CHOICE:CleanUp()
