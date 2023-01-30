@@ -211,7 +211,8 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
     end
 
     -- Give their present to their target
-    choice:Choose(ply, plyRecipients[sid64])
+    choice:Choose(ply, recipient)
+    recipient:PrintMessage(HUD_PRINTTALK, "Your Secret Santa gave you: " .. choice.Name)
 end)
 
 Randomat:register(EVENT)
