@@ -134,16 +134,18 @@ function EVENT:End()
 end
 
 local function AddChoiceConVars(choice, sliders, checks, textboxes)
+    if not choice.AddConVars then return end
+
+    choice:AddConVars(sliders, checks, textboxes)
+end
+
+local function AddEnableConVars(choice, checks)
     local name = choice.Id .. "_enabled"
     local convar = GetConVar("randomat_" .. EVENT.id .. "_" .. name)
     table.insert(checks, {
         cmd = name,
         dsc = choice.Name .. " - " .. convar:GetHelpText()
     })
-
-    if choice.AddConVars then
-        choice:AddConVars(sliders, checks, textboxes)
-    end
 end
 
 function EVENT:GetConVars()
@@ -162,16 +164,19 @@ function EVENT:GetConVars()
         end
     end
 
-    local checks = {}
-    local textboxes = {}
+    -- Copy all the choices into a single table
+    local choices = table.Add(table.Add({}, SECRETSANTA.NaughtyChoices), SECRETSANTA.NiceChoices)
 
-    -- Add all the convars from the naughty choices
-    for _, choice in pairs(SECRETSANTA.NaughtyChoices) do
-        AddChoiceConVars(choice, sliders, checks, textboxes)
+    -- Add enable convars for all of the choices
+    -- Do these first so they are all together above the other checkboxes
+    local checks = {}
+    for _, choice in SortedPairsByMemberValue(choices, "Name") do
+        AddEnableConVars(choice, checks)
     end
 
-    -- Add all the convars from the nice choices
-    for _, choice in pairs(SECRETSANTA.NiceChoices) do
+    -- Add all the convars from the choices
+    local textboxes = {}
+    for _, choice in SortedPairsByMemberValue(choices, "Name") do
         AddChoiceConVars(choice, sliders, checks, textboxes)
     end
 
