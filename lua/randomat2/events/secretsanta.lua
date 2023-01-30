@@ -12,6 +12,12 @@ function SECRETSANTA:RegisterChoice(choice, isNaughty)
         return
     end
 
+    -- Create the "enabled" ConVar for each choice
+    local enabled = CreateConVar("randomat_secretsanta_" .. choice.Id .. "_enabled", "1", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Whether this choice is enabled.", 0, 1)
+    choice.Enabled = function()
+        return enabled:GetBool()
+    end
+
     if isNaughty then
         SECRETSANTA.NaughtyChoices[choice.Id] = choice
     else
@@ -52,12 +58,14 @@ local function ChooseRandomOptions(options, choices, choiceKeys, choiceCount, ch
 
         local key = choiceKeys[idx]
         local choice = choices[key]
-        table.insert(options, {
-            id = key,
-            name = choice.name or choice.Name
-        })
-        table.insert(chosen, idx)
-        count = count + 1
+        if choice:Enabled() and (not choice.Condition or choice:Condition()) then
+            table.insert(options, {
+                id = key,
+                name = choice.name or choice.Name
+            })
+            table.insert(chosen, idx)
+            count = count + 1
+        end
     end
 end
 
@@ -125,6 +133,19 @@ function EVENT:End()
     net.Broadcast()
 end
 
+local function AddChoiceConVars(choice, sliders, checks, textboxes)
+    local name = choice.Id .. "_enabled"
+    local convar = GetConVar("randomat_" .. EVENT.id .. "_" .. name)
+    table.insert(checks, {
+        cmd = name,
+        dsc = choice.Name .. " - " .. convar:GetHelpText()
+    })
+
+    if choice.AddConVars then
+        choice:AddConVars(sliders, checks, textboxes)
+    end
+end
+
 function EVENT:GetConVars()
     local sliders = {}
     for _, v in ipairs({"niceoptions", "naughtyoptions"}) do
@@ -146,16 +167,12 @@ function EVENT:GetConVars()
 
     -- Add all the convars from the naughty choices
     for _, choice in pairs(SECRETSANTA.NaughtyChoices) do
-        if choice.AddConVars then
-            choice:AddConVars(sliders, checks, textboxes)
-        end
+        AddChoiceConVars(choice, sliders, checks, textboxes)
     end
 
     -- Add all the convars from the nice choices
     for _, choice in pairs(SECRETSANTA.NiceChoices) do
-        if choice.AddConVars then
-            choice:AddConVars(sliders, checks, textboxes)
-        end
+        AddChoiceConVars(choice, sliders, checks, textboxes)
     end
 
     return sliders, checks, textboxes
