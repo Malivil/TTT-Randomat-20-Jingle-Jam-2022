@@ -3,7 +3,7 @@ local CHOICE = {}
 CHOICE.Name = "Damage Resistance"
 CHOICE.Id = "damageresistance"
 
-local damageresistance_resistance = CreateConVar("randomat_secretsanta_damageresistance_resistance", "0.3", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Incoming damage reduction that the target gets (e.g. 0.5 = 50% less damage).", 0, 1)
+local damageresistance_resistance = CreateConVar("randomat_secretsanta_damageresistance_resistance", "0.3", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Incoming damage reduction.", 0, 1)
 
 local hookIds = {}
 

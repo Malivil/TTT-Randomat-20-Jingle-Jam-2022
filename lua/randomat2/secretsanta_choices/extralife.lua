@@ -4,6 +4,7 @@ CHOICE.Name = "Extra Life"
 CHOICE.Id = "extralife"
 
 local hookIds = {}
+local timerIds = {}
 
 function CHOICE:Choose(owner, target)
     target:SetNWBool("RdmtSecretSantaExtraLife", true)
@@ -15,7 +16,10 @@ function CHOICE:Choose(owner, target)
     hook.Add("PlayerDeath", hookId .. "_PlayerDeath", function(victim, entity, killer)
         if not IsValid(victim) or target ~= victim or not victim:GetNWBool("RdmtSecretSantaExtraLife", false) then return end
 
-        timer.Create("RdmtSecondChanceTimer", 0.25, 1, function()
+        local timerId = "RdmtSecretSantaExtraLifeTimer_" .. owner:SteamID64() .. "_" .. target:SteamID64()
+        table.insert(timerIds, timerId)
+
+        timer.Create(timerId, 0.25, 1, function()
             victim:SpawnForRound(true)
             local body = victim.server_ragdoll or victim:GetRagdollEntity()
             if IsValid(body) then
@@ -40,6 +44,13 @@ function CHOICE:CleanUp()
         hook.Remove("PlayerDeath", hookId .. "_PlayerDeath")
         hook.Remove("TTTDeathNotifyOverride", hookId .. "_TTTDeathNotifyOverride")
     end
+    table.Empty(hookIds)
+
+    for _, timerId in ipairs(timerIds) do
+        timer.Remove(timerId)
+    end
+    table.Empty(timerIds)
+
     for _, p in ipairs(player.GetAll()) do
         p:SetNWBool("RdmtSecretSantaExtraLife", false)
     end

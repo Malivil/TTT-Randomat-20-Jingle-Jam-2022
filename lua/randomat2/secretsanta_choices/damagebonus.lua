@@ -3,7 +3,7 @@ local CHOICE = {}
 CHOICE.Name = "Damage Bonus"
 CHOICE.Id = "damagebonus"
 
-local damagebonus_bonus = CreateConVar("randomat_secretsanta_damagebonus_bonus", "0.5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Outgoing damage bonus that the target gets (e.g. 0.5 = 50% extra damage).", 0, 1)
+local damagebonus_bonus = CreateConVar("randomat_secretsanta_damagebonus_bonus", "0.5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Outgoing damage bonus.", 0, 1)
 
 local hookIds = {}
 
