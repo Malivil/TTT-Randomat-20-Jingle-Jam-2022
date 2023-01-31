@@ -51,4 +51,8 @@ function CHOICE:AddConVars(sliders, checks, textboxes)
     end
 end
 
+function CHOICE:Condition()
+    return GetConVar("ttt_sprint_enabled"):GetBool() and CRVersion("7.2.3")
+end
+
 SECRETSANTA:RegisterChoice(CHOICE)
