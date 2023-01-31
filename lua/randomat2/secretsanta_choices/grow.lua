@@ -3,7 +3,7 @@ local CHOICE = {}
 CHOICE.Name = "Grow Player"
 CHOICE.Id = "grow"
 
-local grow_scale = CreateConVar("randomat_secretsanta_grow_scale", "1.5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The shrinking scale factor", 1.1, 3.0)
+local grow_scale = CreateConVar("randomat_secretsanta_grow_scale", "1.5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The growing scale factor", 1.1, 3.0)
 
 function CHOICE:Choose(owner, target)
     local scale = grow_scale:GetFloat()
