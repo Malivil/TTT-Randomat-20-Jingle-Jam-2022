@@ -8,7 +8,7 @@ function SECRETSANTA:RegisterChoice(choice, isNaughty)
     choice.Id = choice.Id or choice.id or choice.ID
 
     if SECRETSANTA.NiceChoices[choice.Id] or SECRETSANTA.NaughtyChoices[choice.Id] then
-        ErrorNoHalt("[RANDOMAT] Secret Santa choice already exists with ID '" .. choice.Id .. "'")
+        ErrorNoHalt("[RANDOMAT] Secret Santa choice already exists with ID '" .. choice.Id .. "'\n")
         return
     end
 
