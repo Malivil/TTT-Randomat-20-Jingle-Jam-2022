@@ -54,3 +54,5 @@ function CHOICE:CleanUp()
         timer.Remove("RdmtTSecretSantaCrouchingInvisibilityRevealTimer_" .. p:Nick())
     end
 end
+
+SECRETSANTA:RegisterChoice(CHOICE)
