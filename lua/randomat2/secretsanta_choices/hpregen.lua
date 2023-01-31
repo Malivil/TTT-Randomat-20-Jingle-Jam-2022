@@ -4,7 +4,7 @@ CHOICE.Name = "Health Regen"
 CHOICE.Id = "hpregen"
 
 local hpregen_amount = CreateConVar("randomat_secretsanta_hpregen_amount", "1", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "How much health to give.", 1, 100)
-local hpregen_interval = CreateConVar("randomat_secretsanta_hpregen_interval", "5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "How often to do heal.", 1, 100)
+local hpregen_interval = CreateConVar("randomat_secretsanta_hpregen_interval", "5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "How often to heal.", 1, 100)
 
 local timerIds = {}
 

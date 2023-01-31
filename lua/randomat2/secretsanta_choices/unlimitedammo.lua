@@ -3,7 +3,7 @@ local CHOICE = {}
 CHOICE.Name = "Unlimited Ammo"
 CHOICE.Id = "unlimitedammo"
 
-CreateConVar("randomat_secretsanta_unlimitedammo_affectbuymenu", 0, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Whether it gives buy menu weapons infinite ammo too.")
+CreateConVar("randomat_secretsanta_unlimitedammo_affectbuymenu", 0, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Affects buy menu weapons.")
 
 local hookIds = {}
 
