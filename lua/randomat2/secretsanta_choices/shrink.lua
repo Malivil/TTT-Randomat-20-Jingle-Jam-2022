@@ -1,6 +1,6 @@
 local CHOICE = {}
 
-CHOICE.Name = "Shrink Size"
+CHOICE.Name = "Shrink Player"
 CHOICE.Id = "shrink"
 
 local shrink_scale = CreateConVar("randomat_secretsanta_shrink_scale", "0.5", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The shrinking scale factor", 0.1, 0.9)
