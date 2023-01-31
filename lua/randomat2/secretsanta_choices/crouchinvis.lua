@@ -84,4 +84,8 @@ function CHOICE:AddConVars(sliders, checks, textboxes)
     end
 end
 
+function CHOICE:Condition()
+    return not Randomat:IsEventActive("trexvision") and not Randomat:IsEventActive("gaseous")
+end
+
 SECRETSANTA:RegisterChoice(CHOICE)
