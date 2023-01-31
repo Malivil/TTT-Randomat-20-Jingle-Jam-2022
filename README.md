@@ -42,11 +42,32 @@ _randomat_secretsanta_naughtyoptions_ - Default: 1 - The number of naughty gift 
 ### Nice Gifts
 Gifts that benefit the target player
 
+### *Damage Bonus*
+Gives the target player a bonus to the damage they to do others.
+
+#### ConVars
+_randomat_secretsanta_damagebonus_bonus_ - Default: 0.5 - The outgoing damage bonus factor. A value of `0.5` means a 50% bonus for a total of 150% of normal damage done.
+
+### *Damage Resistance*
+Gives the target player a resistance to the damage done to them.
+
+#### ConVars
+_randomat_secretsanta_damageresistance_resistance_ - Default: 0.3 - The incoming damage resistance factor. A value of `0.3` means a 30% resistance for a total of 70% of normal damage received.
+
+### *Defibrillator*
+Gives the target player a defibrillator, allowing them to resurrect other players.
+
+### *Explosion Immunity*
+Gives the target player immunity to explosions, preventing explosion damage from harming them.
+
 ### *Extra HP*
 Gives the target player more health and more maximum health.
 
 #### ConVars
 _randomat_secretsanta_extrahp_amount_ - Default: 50 - The amount of HP and Maximum HP to give the target.
+
+### *Extra Life*
+Gives the target player an extra life, respawning them automatically when they die the first time.
 
 ### *Health Regen*
 Gives the target player health regeneration, slowly giving them back any lost health over time.
@@ -58,11 +79,23 @@ _randomat_secretsanta_hpregen_interval_ - Default: 5 - How often (in seconds) to
 ### *Health Station*
 Gives the target player a deployable health station.
 
+### *Invisible Crouching*
+Causes the target player to go invisible when they crouch, making it easier for them to hide.
+
+#### ConVars
+_randomat_secretsanta_crouchinvis_reveal_timer_ - Default: 3 - How long (in seconds) to make the target player visible again after they shoot their weapon.
+
 ### *One-Shot Knife*
 Gives the target player a knife that can kill in one hit.
 
 ### *Radar*
 Gives the target player radar.
+
+### *Shrink Player*
+Causes the target player to shrink smaller in size.
+
+#### ConVars
+_randomat_secretsanta_shrink_scale_ - Default: 0.5 - The shrinking scale factor. A value of `0.5` means 50% of normal size, a 50% decrease.
 
 ### *Speed Boost*
 Gives the target player a boost to their movement speed.
@@ -76,6 +109,9 @@ Gives the target player a boost to their movement speed while sprinting.
 #### ConVars
 _randomat_secretsanta_sprintspeed_mult_ - Default: 1.25 - The speed multiplier. A value of `1.25` means 125% of normal sprinting speed, a 25% boost.
 
+### *Teleporter*
+Gives the target player a teleporter.
+
 ### *Unlimited Ammo*
 Gives the target player unlimited ammunition in their current weapon meaning they will never have to reload.
 
@@ -83,6 +119,24 @@ Gives the target player unlimited ammunition in their current weapon meaning the
 _randomat_secretsanta_unlimitedammo_affectbuymenu_ - Default: 0 - Whether it gives buy menu weapons infinite ammo too.
 
 ### Naughty Gifts
+
+### *Crab Walk*
+Causes the target player to only be able to move sideways.
+
+### *Damage Penalty*
+Gives the target player a penalty to the damage they to do others.
+
+#### ConVars
+_randomat_secretsanta_damagepenalty_penalty_ - Default: 0.3 - The outgoing damage penalty factor. A value of `0.3` means a 30% penalty for a total of 70% of normal damage done.
+
+### *Flipped Screen*
+Flips the target player's screen so everything appears upside-down
+
+### *Grow Player*
+Causes the target player to grow larger in size.
+
+#### ConVars
+_randomat_secretsanta_grow_scale_ - Default: 1.5 - The growing scale factor. A value of `1.5` means 150% of normal size, a 50% increase.
 
 ### *Move Slowly*
 Reduce's the target player's movement speed.
