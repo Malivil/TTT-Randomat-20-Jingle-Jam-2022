@@ -1,21 +1,25 @@
 local CHOICE = {}
 
-util.AddNetworkString("RdmtSecretSantaCrabwalkBegin")
-util.AddNetworkString("RdmtSecretSantaCrabwalkEnd")
+util.AddNetworkString("RdmtSecretSantaCrabWalkBegin")
+util.AddNetworkString("RdmtSecretSantaCrabWalkEnd")
 
 CHOICE.Name = "Crab Walk"
 CHOICE.Id = "crabwalk"
 
 function CHOICE:Choose(owner, target)
-    net.Start("RdmtSecretSantaCrabwalkBegin")
+    net.Start("RdmtSecretSantaCrabWalkBegin")
     net.WriteString(target:SteamID64())
     net.WriteString(owner:SteamID64())
     net.Broadcast()
 end
 
 function CHOICE:CleanUp()
-    net.Start("RdmtSecretSantaCrabwalkEnd")
+    net.Start("RdmtSecretSantaCrabWalkEnd")
     net.Broadcast()
+end
+
+function CHOICE:Condition()
+    return not Randomat:IsEventActive("crabwalk")
 end
 
 SECRETSANTA:RegisterChoice(CHOICE, true)

@@ -1,11 +1,11 @@
 local hookIds = {}
 
-net.Receive("RdmtSecretSantaCrabwalkBegin", function()
+net.Receive("RdmtSecretSantaCrabWalkBegin", function()
     local target = net.ReadString()
     local owner = net.ReadString()
 
     -- Generate a unique ID for this pairing and save it to be cleaned up later
-    local hookId = "RdmtSecretSantaCrabwalk_" .. owner .. "_" .. target
+    local hookId = "RdmtSecretSantaCrabWalk_" .. owner .. "_" .. target
     table.insert(hookIds, hookId)
 
     hook.Add("StartCommand", hookId, function(ply, CUserCmd)
@@ -15,7 +15,7 @@ net.Receive("RdmtSecretSantaCrabwalkBegin", function()
     end)
 end)
 
-net.Receive("RdmtSecretSantaCrabwalkEnd", function()
+net.Receive("RdmtSecretSantaCrabWalkEnd", function()
     for _, hookId in ipairs(hookIds) do
         hook.Remove("StartCommand", hookId)
     end
