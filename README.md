@@ -160,7 +160,7 @@ _randomat_secretsanta_reducehp_factor_ - Default: 0.5 - The health reduction fac
 
 ## The Snap
 _Suggested By_: Dragna\
-Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends. If this causes the round to be won by the innocents, everyone snapped will respawn exactly where they wre.
+Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends. If this causes the round to be won by the innocents, everyone snapped will respawn exactly where they were.
 \
 \
 **ConVars**
