@@ -85,7 +85,7 @@ local sounds = {
       sound = { Sound("weapons/c4/c4_beep1.wav") },
       delay = 0.75,
       times = {8, 12},
-      burst = false,
+      burst = true,
       ampl = 70
    }
 };
