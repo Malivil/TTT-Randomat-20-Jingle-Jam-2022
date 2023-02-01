@@ -158,6 +158,9 @@ Reduces the target player's health and maximum health.
 #### ConVars
 _randomat_secretsanta_reducehp_factor_ - Default: 0.5 - The health reduction factor. A value of `0.5` means the target player will have 50% less HP and maximum HP.
 
+### *Un-droppable H.U.G.E.*
+Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped
+
 ## The Snap
 _Suggested By_: Dragna\
 Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends. If this causes the round to be won by the innocents, everyone snapped will respawn exactly where they were.
