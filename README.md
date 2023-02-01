@@ -144,6 +144,9 @@ Reduce's the target player's movement speed.
 #### ConVars
 _randomat_secretsanta_speedreduction_mult_ - Default: 0.75 - The speed multiplier. A value of `0.75` means 75% of normal movement speed, a 25% boost.
 
+### *Permanent H.U.G.E.*
+Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped
+
 ### *Poison*
 Poisons the target player, slowly damaging them over time.
 
@@ -157,9 +160,6 @@ Reduces the target player's health and maximum health.
 
 #### ConVars
 _randomat_secretsanta_reducehp_factor_ - Default: 0.5 - The health reduction factor. A value of `0.5` means the target player will have 50% less HP and maximum HP.
-
-### *Un-droppable H.U.G.E.*
-Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped
 
 ## The Snap
 _Suggested By_: Dragna\
