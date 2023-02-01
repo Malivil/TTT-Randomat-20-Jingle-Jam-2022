@@ -1,6 +1,6 @@
 local CHOICE = {}
 
-CHOICE.Name = "Un-droppable H.U.G.E."
+CHOICE.Name = "Permanent H.U.G.E."
 CHOICE.Id = "undroppablehuge"
 
 local hookIds = {}
