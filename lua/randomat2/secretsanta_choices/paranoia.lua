@@ -6,8 +6,8 @@ util.AddNetworkString("RdmtSecretSantaParanoiaEnd")
 CHOICE.Name = "Paranoia"
 CHOICE.Id = "paranoia"
 
-local paranoia_timer_min = CreateConVar("randomat_secretsanta_paranoia_timer_min", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "The minimum time before the sound should play", 1, 120)
-local paranoia_timer_max = CreateConVar("randomat_secretsanta_paranoia_timer_max", 30, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "The maximum time before the sound should play", 1, 120)
+local paranoia_timer_min = CreateConVar("randomat_secretsanta_paranoia_timer_min", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Minimum time between sounds", 1, 120)
+local paranoia_timer_max = CreateConVar("randomat_secretsanta_paranoia_timer_max", 30, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Maximum time between sounds", 1, 120)
 
 
 
