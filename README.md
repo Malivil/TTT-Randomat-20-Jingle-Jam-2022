@@ -119,6 +119,7 @@ Gives the target player unlimited ammunition in their current weapon meaning the
 _randomat_secretsanta_unlimitedammo_affectbuymenu_ - Default: 0 - Whether it gives buy menu weapons infinite ammo too.
 
 ### Naughty Gifts
+Gifts that are to the detriment of the target player
 
 ### *Crab Walk*
 Causes the target player to only be able to move sideways.
@@ -130,13 +131,16 @@ Gives the target player a penalty to the damage they to do others.
 _randomat_secretsanta_damagepenalty_penalty_ - Default: 0.3 - The outgoing damage penalty factor. A value of `0.3` means a 30% penalty for a total of 70% of normal damage done.
 
 ### *Flipped Screen*
-Flips the target player's screen so everything appears upside-down
+Flips the target player's screen so everything appears upside-down.
 
 ### *Grow Player*
 Causes the target player to grow larger in size.
 
 #### ConVars
 _randomat_secretsanta_grow_scale_ - Default: 1.5 - The growing scale factor. A value of `1.5` means 150% of normal size, a 50% increase.
+
+### *Less Ammo*
+Causes the target player to use twice as much ammunition when firing their gun.
 
 ### *Move Slowly*
 Reduce's the target player's movement speed.
@@ -145,7 +149,7 @@ Reduce's the target player's movement speed.
 _randomat_secretsanta_speedreduction_mult_ - Default: 0.75 - The speed multiplier. A value of `0.75` means 75% of normal movement speed, a 25% boost.
 
 ### *Permanent H.U.G.E.*
-Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped
+Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped.
 
 ### *Poison*
 Poisons the target player, slowly damaging them over time.
