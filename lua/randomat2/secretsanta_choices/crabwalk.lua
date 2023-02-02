@@ -8,9 +8,7 @@ CHOICE.Id = "crabwalk"
 
 function CHOICE:Choose(owner, target)
     net.Start("RdmtSecretSantaCrabWalkBegin")
-    net.WriteString(target:SteamID64())
-    net.WriteString(owner:SteamID64())
-    net.Broadcast()
+    net.Send(target)
 end
 
 function CHOICE:CleanUp()
