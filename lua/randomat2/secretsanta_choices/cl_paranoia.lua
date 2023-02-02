@@ -125,7 +125,7 @@ local function startTimer(id, ply, delay_min, delay_max)
             end
          end
 
-         startTimer(id, target, delay_min, delay_max)
+         startTimer(id, ply, delay_min, delay_max)
       end
    end)
 end
