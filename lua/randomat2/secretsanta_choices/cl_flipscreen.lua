@@ -1,17 +1,8 @@
-local hookIds = {}
-
 net.Receive("RdmtSecretSantaFlipScreenBegin", function()
-    local target = net.ReadString()
-    local owner = net.ReadString()
-
-    -- Generate a unique ID for this pairing and save it to be cleaned up later
-    local hookId = "RdmtSecretSantaFlipScreen_" .. owner .. "_" .. target
-    table.insert(hookIds, hookId)
-
+    local client = LocalPlayer()
     local view = { origin = vector_origin, angles = angle_zero, fov = 0 }
-    hook.Add("CalcView", hookId .. "_CalcView", function(ply, origin, angles, fov)
-        if not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() then return end
-        if ply:SteamID64() ~= target then return end
+    hook.Add("CalcView", "RdmtSecretSantaFlipScreen_CalcView", function(ply, origin, angles, fov)
+        if not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() or ply ~= client then return end
 
         view.origin = origin
         view.angles = angles
@@ -30,10 +21,8 @@ net.Receive("RdmtSecretSantaFlipScreenBegin", function()
         return view
     end)
 
-    local client = LocalPlayer()
-    hook.Add("InputMouseApply", hookId .. "_InputMouseApply", function(cmd, x, y, ang)
+    hook.Add("InputMouseApply", "RdmtSecretSantaFlipScreen_InputMouseApply", function(cmd, x, y, ang)
         if not IsPlayer(client) or not client:Alive() or client:IsSpec() then return end
-        if client:SteamID64() ~= target then return end
 
         ang.yaw = ang.yaw + (x / 50)
         ang.pitch = math.Clamp(ang.pitch - y / 50, -89, 89)
@@ -44,9 +33,6 @@ net.Receive("RdmtSecretSantaFlipScreenBegin", function()
 end)
 
 net.Receive("RdmtSecretSantaFlipScreenEnd", function()
-    for _, hookId in ipairs(hookIds) do
-        hook.Remove("CalcView", hookId .. "_CalcView")
-        hook.Remove("InputMouseApply", hookId .. "_InputMouseApply")
-    end
-    table.Empty(hookIds)
+    hook.Remove("CalcView", "RdmtSecretSantaFlipScreen_CalcView")
+    hook.Remove("InputMouseApply", "RdmtSecretSantaFlipScreen_InputMouseApply")
 end)

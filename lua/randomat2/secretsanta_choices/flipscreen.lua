@@ -14,18 +14,14 @@ function CHOICE:Choose(owner, target)
     table.insert(hookIds, hookId)
 
     hook.Add("SetupMove", hookId, function(ply, mv, cmd)
-        if not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() then return end
+        if not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() or ply ~= target then return end
 
-        if ply == target then
-            local sidespeed = mv:GetSideSpeed()
-            mv:SetSideSpeed(-sidespeed)
-        end
+        local sidespeed = mv:GetSideSpeed()
+        mv:SetSideSpeed(-sidespeed)
     end)
 
     net.Start("RdmtSecretSantaFlipScreenBegin")
-    net.WriteString(target:SteamID64())
-    net.WriteString(owner:SteamID64())
-    net.Broadcast()
+    net.Send(target)
 end
 
 function CHOICE:CleanUp()
