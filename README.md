@@ -165,6 +165,12 @@ Reduces the target player's health and maximum health.
 #### ConVars
 _randomat_secretsanta_reducehp_factor_ - Default: 0.5 - The health reduction factor. A value of `0.5` means the target player will have 50% less HP and maximum HP.
 
+### *Reversed Controls*
+Reverses the target's controls, swapping forward/backward, left/right, and fire/reload. If "hard mode" is enabled, jump/crouch are also swapped.
+
+#### ConVars
+_randomat_secretsanta_reversedcontrols_hardmode_ - Default: 1 - Whether to enable "hard mode" and also swap the Jump and Crouch controls.
+
 ## The Snap
 _Suggested By_: Dragna\
 Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends. If this causes the round to be won by the innocents, everyone snapped will respawn exactly where they were.
