@@ -121,6 +121,9 @@ _randomat_secretsanta_unlimitedammo_affectbuymenu_ - Default: 0 - Whether it giv
 ### Naughty Gifts
 Gifts that are to the detriment of the target player
 
+### *Blind...ish*
+Causes the target player to go blind however they can see the outlines of players, even through walls.
+
 ### *Crab Walk*
 Causes the target player to only be able to move sideways.
 
@@ -147,6 +150,13 @@ Reduce's the target player's movement speed.
 
 #### ConVars
 _randomat_secretsanta_speedreduction_mult_ - Default: 0.75 - The speed multiplier. A value of `0.75` means 75% of normal movement speed, a 25% boost.
+
+### *Paranoia*
+Causes the target player to randomly hear death noises, gun shots and C4 beeps.
+
+#### ConVars
+_randomat_secretsanta_paranoia_timer_min_ - Default: 15 - The minimum time (in seconds) between noises caused by paranoia.
+_randomat_secretsanta_paranoia_timer_max_ - Default: 30 - The maximum time (in seconds) between noises caused by paranoia.
 
 ### *Permanent H.U.G.E.*
 Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped.
