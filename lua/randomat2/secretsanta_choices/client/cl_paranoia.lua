@@ -122,9 +122,9 @@ local function startTimer(id, ply, delay_min, delay_max)
                     t = t + math.Rand(chosen_sound.delay, chosen_sound.delay * 2)
                 end
             end
-
-            startTimer(id, target, delay_min, delay_max)
         end
+
+        startTimer(id, ply, delay_min, delay_max)
     end)
 end
 
