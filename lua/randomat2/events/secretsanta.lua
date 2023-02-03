@@ -1,27 +1,27 @@
 SECRETSANTA = {
-    NiceChoices = {},
-    NaughtyChoices = {}
+    NiceGifts = {},
+    NaughtyGifts = {}
 }
 
-function SECRETSANTA:RegisterChoice(choice, isNaughty)
+function SECRETSANTA:RegisterGift(gift, isNaughty)
     -- Make sure this is set correctly
-    choice.Id = choice.Id or choice.id or choice.ID
+    gift.Id = gift.Id or gift.id or gift.ID
 
-    if SECRETSANTA.NiceChoices[choice.Id] or SECRETSANTA.NaughtyChoices[choice.Id] then
-        ErrorNoHalt("[RANDOMAT] Secret Santa choice already exists with ID '" .. choice.Id .. "'\n")
+    if SECRETSANTA.NiceGifts[gift.Id] or SECRETSANTA.NaughtyGifts[gift.Id] then
+        ErrorNoHalt("[RANDOMAT] Secret Santa gift already exists with ID '" .. gift.Id .. "'\n")
         return
     end
 
-    -- Create the "enabled" ConVar for each choice
-    local enabled = CreateConVar("randomat_secretsanta_" .. choice.Id .. "_enabled", "1", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Whether this choice is enabled.", 0, 1)
-    choice.Enabled = function()
+    -- Create the "enabled" ConVar for each gift
+    local enabled = CreateConVar("randomat_secretsanta_" .. gift.Id .. "_enabled", "1", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Whether this gift is enabled.", 0, 1)
+    gift.Enabled = function()
         return enabled:GetBool()
     end
 
     if isNaughty then
-        SECRETSANTA.NaughtyChoices[choice.Id] = choice
+        SECRETSANTA.NaughtyGifts[gift.Id] = gift
     else
-        SECRETSANTA.NiceChoices[choice.Id] = choice
+        SECRETSANTA.NiceGifts[gift.Id] = gift
     end
 end
 
@@ -43,25 +43,25 @@ EVENT.Type = EVENT_TYPE_VOTING
 EVENT.Categories = {"biased_traitor", "biased", "moderateimpact"}
 
 local plyRecipients = {}
-local plyChoices = {}
+local plyGifts = {}
 
-local function ChooseRandomOptions(options, choices, choiceKeys, choiceCount, choiceOptions)
+local function ChooseRandomOptions(options, gifts, giftKeys, giftCount, giftOptions)
     local chosen = {}
     local count = 1
-    while count <= choiceOptions do
-        local idx = math.random(1, choiceCount)
+    while count <= giftOptions do
+        local idx = math.random(1, giftCount)
 
         -- If we've already chosen this one (yay GMod randomization) then try again
         if table.HasValue(chosen, idx) then
             continue
         end
 
-        local key = choiceKeys[idx]
-        local choice = choices[key]
-        if choice:Enabled() and (not choice.Condition or choice:Condition()) then
+        local key = giftKeys[idx]
+        local gift = gifts[key]
+        if gift:Enabled() and (not gift.Condition or gift:Condition()) then
             table.insert(options, {
                 id = key,
-                name = choice.name or choice.Name
+                name = gift.name or gift.Name
             })
             table.insert(chosen, idx)
             count = count + 1
@@ -69,25 +69,25 @@ local function ChooseRandomOptions(options, choices, choiceKeys, choiceCount, ch
     end
 end
 
-local function CleanUpChoices()
-    for _, choice in pairs(SECRETSANTA.NaughtyChoices) do
-        if choice.CleanUp then
-            choice:CleanUp()
+local function CleanUpGifts()
+    for _, gift in pairs(SECRETSANTA.NaughtyGifts) do
+        if gift.CleanUp then
+            gift:CleanUp()
         end
     end
-    for _, choice in pairs(SECRETSANTA.NiceChoices) do
-        if choice.CleanUp then
-            choice:CleanUp()
+    for _, gift in pairs(SECRETSANTA.NiceGifts) do
+        if gift.CleanUp then
+            gift:CleanUp()
         end
     end
 end
 
 function EVENT:Begin()
     plyRecipients = {}
-    plyChoices = {}
+    plyGifts = {}
 
-    -- Ensure all choices are reset back to their default state
-    CleanUpChoices()
+    -- Ensure all gifts are reset back to their default state
+    CleanUpGifts()
 
     -- Generate Santa/Recipient pairs
     local alivePlayers = self:GetAlivePlayers(true)
@@ -104,16 +104,16 @@ function EVENT:Begin()
         plyRecipients[current] = recip
     end
 
-    local niceKeys = table.GetKeys(SECRETSANTA.NiceChoices)
-    local niceCount = table.Count(SECRETSANTA.NiceChoices)
+    local niceKeys = table.GetKeys(SECRETSANTA.NiceGifts)
+    local niceCount = table.Count(SECRETSANTA.NiceGifts)
     local niceOptions = GetConVar("randomat_secretsanta_niceoptions"):GetInt()
-    local naughtyKeys = table.GetKeys(SECRETSANTA.NaughtyChoices)
-    local naughtyCount = table.Count(SECRETSANTA.NaughtyChoices)
+    local naughtyKeys = table.GetKeys(SECRETSANTA.NaughtyGifts)
+    local naughtyCount = table.Count(SECRETSANTA.NaughtyGifts)
     local naughtyOptions = GetConVar("randomat_secretsanta_naughtyoptions"):GetInt()
     for _, ply in ipairs(alivePlayers) do
         local options = {}
-        ChooseRandomOptions(options, SECRETSANTA.NiceChoices, niceKeys, niceCount, niceOptions)
-        ChooseRandomOptions(options, SECRETSANTA.NaughtyChoices, naughtyKeys, naughtyCount, naughtyOptions)
+        ChooseRandomOptions(options, SECRETSANTA.NiceGifts, niceKeys, niceCount, niceOptions)
+        ChooseRandomOptions(options, SECRETSANTA.NaughtyGifts, naughtyKeys, naughtyCount, naughtyOptions)
 
         -- Send options to pairs
         recip = plyRecipients[ply:SteamID64()]
@@ -128,23 +128,23 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
-    CleanUpChoices()
+    CleanUpGifts()
     net.Start("RdmtSecretSantaEnd")
     net.Broadcast()
 end
 
-local function AddChoiceConVars(choice, sliders, checks, textboxes)
-    if not choice.AddConVars then return end
+local function AddGiftConVars(gift, sliders, checks, textboxes)
+    if not gift.AddConVars then return end
 
-    choice:AddConVars(sliders, checks, textboxes)
+    gift:AddConVars(sliders, checks, textboxes)
 end
 
-local function AddEnableConVars(choice, checks)
-    local name = choice.Id .. "_enabled"
+local function AddEnableConVars(gift, checks)
+    local name = gift.Id .. "_enabled"
     local convar = GetConVar("randomat_" .. EVENT.id .. "_" .. name)
     table.insert(checks, {
         cmd = name,
-        dsc = choice.Name .. " - " .. convar:GetHelpText()
+        dsc = gift.Name .. " - " .. convar:GetHelpText()
     })
 end
 
@@ -164,20 +164,20 @@ function EVENT:GetConVars()
         end
     end
 
-    -- Copy all the choices into a single table
-    local choices = table.Add(table.Add({}, SECRETSANTA.NaughtyChoices), SECRETSANTA.NiceChoices)
+    -- Copy all the gifts into a single table
+    local gifts = table.Add(table.Add({}, SECRETSANTA.NaughtyGifts), SECRETSANTA.NiceGifts)
 
-    -- Add enable convars for all of the choices
+    -- Add enable convars for all of the gifts
     -- Do these first so they are all together above the other checkboxes
     local checks = {}
-    for _, choice in SortedPairsByMemberValue(choices, "Name") do
-        AddEnableConVars(choice, checks)
+    for _, gift in SortedPairsByMemberValue(gifts, "Name") do
+        AddEnableConVars(gift, checks)
     end
 
-    -- Add all the convars from the choices
+    -- Add all the convars from the gifts
     local textboxes = {}
-    for _, choice in SortedPairsByMemberValue(choices, "Name") do
-        AddChoiceConVars(choice, sliders, checks, textboxes)
+    for _, gift in SortedPairsByMemberValue(gifts, "Name") do
+        AddGiftConVars(gift, sliders, checks, textboxes)
     end
 
     return sliders, checks, textboxes
@@ -190,19 +190,19 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
         return
     end
 
-    local choiceId = net.ReadString()
-    -- Get the choice from either list
-    local choice = SECRETSANTA.NiceChoices[choiceId] or SECRETSANTA.NaughtyChoices[choiceId]
-    if not choice then
-        ply:PrintMessage(HUD_PRINTTALK, "'" .. choiceId .. "' is not a valid choice.")
+    local giftId = net.ReadString()
+    -- Get the gift from either list
+    local gift = SECRETSANTA.NiceGifts[giftId] or SECRETSANTA.NaughtyGifts[giftId]
+    if not gift then
+        ply:PrintMessage(HUD_PRINTTALK, "'" .. giftId .. "' is not a valid gift.")
         return
     end
 
-    if plyChoices[sid64] then
+    if plyGifts[sid64] then
         ply:PrintMessage(HUD_PRINTTALK, "You've already sent a present to your recipient.")
         return
     end
-    plyChoices[sid64] = choiceId
+    plyGifts[sid64] = giftId
 
     local recipient = plyRecipients[sid64]
     -- Don't tell the player that this person is dead in case they didn't already know that
@@ -211,9 +211,9 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
     end
 
     -- Give their present to their target
-    choice:Choose(ply, recipient)
-    recipient:PrintMessage(HUD_PRINTTALK, "Your Secret Santa gave you: " .. choice.Name)
-    Randomat:LogEvent("[RANDOMAT] " .. EVENT.Title .. ": " .. ply:Nick() .. " gave " .. recipient:Nick() .. " '" .. choice.Name .. "'")
+    gift:Choose(ply, recipient)
+    recipient:PrintMessage(HUD_PRINTTALK, "Your Secret Santa gave you: " .. gift.Name)
+    Randomat:LogEvent("[RANDOMAT] " .. EVENT.Title .. ": " .. ply:Nick() .. " gave " .. recipient:Nick() .. " '" .. gift.Name .. "'")
 end)
 
 Randomat:register(EVENT)
