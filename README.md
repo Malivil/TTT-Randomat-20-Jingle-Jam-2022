@@ -119,10 +119,24 @@ Gives the target player unlimited ammunition in their current weapon meaning the
 _randomat_secretsanta_unlimitedammo_affectbuymenu_ - Default: 0 - Whether it gives buy menu weapons infinite ammo too.
 
 ### Naughty Gifts
-Gifts that are to the detriment of the target player
+Gifts that are to the detriment of the target player.
 
 ### *Blind...ish*
 Causes the target player to go blind however they can see the outlines of players, even through walls.
+
+### *Butterfingers*
+Causes the target player to periodically drop their active weapon.
+
+#### ConVars
+_randomat_secretsanta_butterfingers_time_min_ - Default: 10 - The minimum amount of time (in seconds) between weapon drops.
+_randomat_secretsanta_butterfingers_time_max_ - Default: 30 - The maximum amount of time (in seconds) between weapon drops.
+
+### *Changed FOV*
+Changes the target's field-of-view (FOV) to make it more difficult for them to see.
+
+#### ConVars
+_randomat_secretsanta_changedfov_scale_ - Default: 1.5 - Scale of the FOV increase.\
+_randomat_secretsanta_changedfov_scale_ironsight_ - Default: 1.0 - Scale of the FOV increase when ironsighted.
 
 ### *Crab Walk*
 Causes the target player to only be able to move sideways.
