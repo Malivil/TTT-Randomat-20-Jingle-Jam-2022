@@ -159,6 +159,9 @@ _randomat_secretsanta_grow_scale_ - Default: 1.5 - The growing scale factor. A v
 ### *Less Ammo*
 Causes the target player to use twice as much ammunition when firing their gun.
 
+### *Locked Camera*
+Locks the target's camera, preventing it from moving up and down.
+
 ### *Move Slowly*
 Reduce's the target player's movement speed.
 
@@ -212,3 +215,4 @@ _randomat_thesnap_deathdelay_ - Default: 5 - The amount of time before the chose
 - Angela of the Lonely Yogs for helping find resources for the "Jingle Jam 2022" event
 - Harry and Nick of the Yogscast for providing the bar texture for the "Jingle Jam 2022" event
 - Kevin Macleod for the donation complete song used in the "Jingle Jam 2022" event, [Who Likes to Party](https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1200075)
+- [The Stig](https://steamcommunity.com/id/The-Stig-294) for the code used in the "Secret Santa" event's "Locked Camera" gift
