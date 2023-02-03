@@ -186,6 +186,14 @@ _randomat_secretsanta_poison_amount_ - Default: 1 - How much damage to do each i
 _randomat_secretsanta_poison_interval_ - Default: 5 - How often (in seconds) to damage the player.\
 _randomat_secretsanta_poison_max_ - Default: 0 - The maximum total damage to do. Set to 0 to disable, causing damage forever.
 
+### *Random Sensitivity*
+Periodically changes the targets mouse sensitivity.
+
+#### ConVars
+_randomat_secretsanta_randomsensitivity_change_interval_ - Default: 15 - How often to change the player's sensitivity.\
+_randomat_secretsanta_randomsensitivity_scale_min_ - Default: 25 - The minimum sensitivity to use.\
+_randomat_secretsanta_randomsensitivity_scale_max_ - Default: 500 - The maximum sensitivity to use.
+
 ### *Reduce Health*
 Reduces the target player's health and maximum health.
 
