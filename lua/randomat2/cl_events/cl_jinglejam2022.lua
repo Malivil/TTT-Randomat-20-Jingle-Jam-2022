@@ -97,8 +97,8 @@ net.Receive("RdmtJingleJam2022Begin", function()
         return true
     end)
 
-    local progressTexture = Material("vgui/ttt/Pattern_money.png")
-    local completeTexture = Material("vgui/ttt/Pattern_money_gold.png")
+    local progressTexture = Material("vgui/ttt/pattern_money.png")
+    local completeTexture = Material("vgui/ttt/pattern_money_gold.png")
     local donationBoxColor = Color(195, 15, 68, 255)
     hook.Add("HUDPaint", "RdmtJingleJam2022HUDPaint", function()
         local percentFilled = donationCurrent / donationGoal
