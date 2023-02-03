@@ -206,6 +206,14 @@ Reverses the target's controls, swapping forward/backward, left/right, and fire/
 #### ConVars
 _randomat_secretsanta_reversedcontrols_hardmode_ - Default: 1 - Whether to enable "hard mode" and also swap the Jump and Crouch controls.
 
+### *Weapon Jams*
+Periodically jams the target's weapons, preventing them from firing any bullets
+
+#### ConVars
+_randomat_secretsanta_weaponjams_interval_min_ - Default: 30 - The minimum time (in seconds) between weapon jams.\
+_randomat_secretsanta_weaponjams_interval_max_ - Default: 60 - The maximum time (in seconds) between weapon jams.\
+_randomat_secretsanta_weaponjams_duration_ - Default: 5 - The amount of time (in seconds) weapons should stay jammed for.
+
 ## The Snap
 _Suggested By_: Dragna\
 Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends. If this causes the round to be won by the innocents, everyone snapped will respawn exactly where they were.
