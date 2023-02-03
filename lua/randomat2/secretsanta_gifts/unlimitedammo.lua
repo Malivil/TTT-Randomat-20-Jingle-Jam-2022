@@ -41,4 +41,8 @@ function GIFT:AddConVars(sliders, checks, textboxes)
     end
 end
 
+function GIFT:Condition()
+    return not Randomat:IsEventActive("ammo")
+end
+
 SECRETSANTA:RegisterGift(GIFT)

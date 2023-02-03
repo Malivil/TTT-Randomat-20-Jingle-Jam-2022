@@ -54,4 +54,8 @@ function GIFT:CleanUp()
     net.Broadcast()
 end
 
+function GIFT:Condition()
+    return not Randomat:IsEventActive("doomed")
+end
+
 SECRETSANTA:RegisterGift(GIFT, true)

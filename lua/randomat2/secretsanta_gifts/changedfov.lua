@@ -89,4 +89,8 @@ function GIFT:AddConVars(sliders, checks, textboxes)
     end
 end
 
+function GIFT:Condition()
+    return not Randomat:IsEventActive("fov")
+end
+
 SECRETSANTA:RegisterGift(GIFT, true)

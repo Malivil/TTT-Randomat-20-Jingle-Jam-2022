@@ -42,4 +42,8 @@ function GIFT:CleanUp()
     table.Empty(hookIds)
 end
 
+function GIFT:Condition()
+    return not Randomat:IsEventActive("derptective")
+end
+
 SECRETSANTA:RegisterGift(GIFT, true)

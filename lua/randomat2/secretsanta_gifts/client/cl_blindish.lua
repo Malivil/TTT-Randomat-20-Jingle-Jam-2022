@@ -3,7 +3,6 @@ local function IsTargetHighlighted(ply, target)
 end
 
 net.Receive("RdmtSecretSantaBlindishBegin", function()
-
     local client = LocalPlayer()
     hook.Add("PreDrawHalos", "RdmtSecretSantaBlindish_PreDrawHalos", function()
         local alivePlys = {}
