@@ -72,6 +72,19 @@ function EVENT:Begin()
             return WIN_INNOCENT
         end
     end)
+
+    self:AddHook("PlayerSpawn", function(ply)
+        if not donationGoal or not donationCurrent then return end
+        if not IsPlayer(ply) then return end
+
+        net.Start("RdmtJingleJam2022Begin")
+        net.WriteUInt(donationGoal, 8)
+        net.Send(ply)
+
+        net.Start("RdmtJingleJam2022Donation")
+        net.WriteUInt(donationCurrent, 8)
+        net.Send(ply)
+    end)
 end
 
 function EVENT:End()
