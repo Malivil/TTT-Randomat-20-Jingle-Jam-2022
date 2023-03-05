@@ -130,13 +130,10 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
     -- Make sure we don't donate more credits than are needed for the goal
     credits = math.min(credits, donationGoal - donationCurrent)
 
-    local creditName = " credit"
-    if credits > 1 then
-        creditName = creditName .. "s"
-    end
-
-    -- Get the donator's message
-    local donationMessage = net.ReadString()
+    -- Save the donation amount
+    donationCurrent = donationCurrent + credits
+    -- Figure out if we're done
+    donationMet = donationCurrent >= donationGoal
 
     -- Get the donator's name
     local anon = net.ReadBool()
@@ -147,10 +144,13 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
         name = ply:Nick()
     end
 
-    -- Save the donation amount
-    donationCurrent = donationCurrent + credits
-    -- Figure out if we're done
-    donationMet = donationCurrent >= donationGoal
+    -- Get the donator's message
+    local donationMessage = net.ReadString()
+
+    local creditName = " credit"
+    if credits > 1 then
+        creditName = creditName .. "s"
+    end
 
     -- Tell everyone
     local message = name .. " donated " .. credits .. creditName .. " to charity!"

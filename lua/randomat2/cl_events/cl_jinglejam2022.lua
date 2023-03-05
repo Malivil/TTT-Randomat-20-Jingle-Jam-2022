@@ -32,8 +32,14 @@ local function CreateDonateMenu(dsheet)
     dslider:SetDefaultValue(0)
     dslider:SetDecimals(0)
 
+    -- Get the value from the text area instead of the slider itself because the slider value is a float
+    -- and rounding it is not accurate. We want the value shown to the user to be what gets sent to the server.
+    local function GetSelectedCredits()
+        return dslider:GetTextArea():GetInt()
+    end
+
     dslider.OnValueChanged = function(slider, num)
-        dsubmit:SetDisabled(num <= 0)
+        dsubmit:SetDisabled(GetSelectedCredits() <= 0)
     end
 
     local dtextentry = vgui.Create("DTextEntry", dform)
@@ -47,13 +53,10 @@ local function CreateDonateMenu(dsheet)
     dcheckbox:SetText(GetTranslation("equip_donation_anon"))
 
     dsubmit.DoClick = function(s)
-        -- Get the value from the text area instead of the slider itself because the slider value is a float
-        -- and rounding it is not accurate. We want the value shown to the user to be what gets sent to the server.
-        local credits = dslider:GetTextArea():GetInt()
         net.Start("RdmtJingleJam2022Donation")
-        net.WriteUInt(credits, 8)
-        net.WriteString(dtextentry:GetValue())
+        net.WriteUInt(GetSelectedCredits(), 8)
         net.WriteBool(dcheckbox:GetChecked())
+        net.WriteString(dtextentry:GetValue())
         net.SendToServer()
     end
 
