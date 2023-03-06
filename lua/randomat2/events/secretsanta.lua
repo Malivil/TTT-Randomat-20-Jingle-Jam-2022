@@ -6,6 +6,7 @@ SECRETSANTA = {
 function SECRETSANTA:RegisterGift(gift, isNaughty)
     -- Make sure this is set correctly
     gift.Id = gift.Id or gift.id or gift.ID
+    gift.IsNaughty = isNaughty
 
     if SECRETSANTA.NiceGifts[gift.Id] or SECRETSANTA.NaughtyGifts[gift.Id] then
         ErrorNoHalt("[RANDOMAT] Secret Santa gift already exists with ID '" .. gift.Id .. "'\n")
@@ -212,6 +213,10 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
 
     -- Give their present to their target
     gift:Choose(ply, recipient)
+    -- If this is a naughty gift and the Krampus role exists, then mark this player as naughty
+    if gift.IsNaughty and type(KRAMPUS_NAUGHTY_OTHER) == "number" and type(MarkPlayerNaughty) == "function" then
+        MarkPlayerNaughty(ply, KRAMPUS_NAUGHTY_OTHER)
+    end
     recipient:PrintMessage(HUD_PRINTTALK, "Your Secret Santa gave you: " .. gift.Name)
     Randomat:LogEvent("[RANDOMAT] " .. EVENT.Title .. ": " .. ply:Nick() .. " gave " .. recipient:Nick() .. " '" .. gift.Name .. "'")
 end)
