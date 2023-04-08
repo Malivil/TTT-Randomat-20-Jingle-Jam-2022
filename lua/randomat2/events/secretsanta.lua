@@ -111,21 +111,25 @@ function EVENT:Begin()
     local naughtyKeys = table.GetKeys(SECRETSANTA.NaughtyGifts)
     local naughtyCount = table.Count(SECRETSANTA.NaughtyGifts)
     local naughtyOptions = GetConVar("randomat_secretsanta_naughtyoptions"):GetInt()
-    for _, ply in ipairs(alivePlayers) do
-        local options = {}
-        ChooseRandomOptions(options, SECRETSANTA.NiceGifts, niceKeys, niceCount, niceOptions)
-        ChooseRandomOptions(options, SECRETSANTA.NaughtyGifts, naughtyKeys, naughtyCount, naughtyOptions)
 
-        -- Send options to pairs
-        recip = plyRecipients[ply:SteamID64()]
-        net.Start("RdmtSecretSantaBegin")
-        net.WriteString(recip:Nick())
-        net.WriteTable(options)
-        net.Send(ply)
+    -- Add a short delay so the chat description has a chance to show before we start sending all these messages
+    timer.Simple(0.1, function()
+        for _, ply in ipairs(alivePlayers) do
+            local options = {}
+            ChooseRandomOptions(options, SECRETSANTA.NiceGifts, niceKeys, niceCount, niceOptions)
+            ChooseRandomOptions(options, SECRETSANTA.NaughtyGifts, naughtyKeys, naughtyCount, naughtyOptions)
 
-        -- Notify each person who their target is
-        ply:PrintMessage(HUD_PRINTTALK, "Your '" .. EVENT.Title .. "' recipient is: " .. recip:Nick())
-    end
+            -- Send options to pairs
+            recip = plyRecipients[ply:SteamID64()]
+            net.Start("RdmtSecretSantaBegin")
+            net.WriteString(recip:Nick())
+            net.WriteTable(options)
+            net.Send(ply)
+
+            -- Notify each person who their target is
+            ply:PrintMessage(HUD_PRINTTALK, "Your '" .. EVENT.Title .. "' recipient is: " .. recip:Nick())
+        end
+    end)
 end
 
 function EVENT:End()
