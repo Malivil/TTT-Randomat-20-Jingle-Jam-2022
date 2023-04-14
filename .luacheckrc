@@ -1056,7 +1056,7 @@ globals = {
 	"WIN_DETECTOCLOWN",
 	"WIN_FAKER",
 	"WIN_KRAMPUS",
-	"MarkPlayerNaughty"
+	"MarkPlayerNaughty",
 
 	-- JJ2022 Randomat
 	"SECRETSANTA"
