@@ -8,7 +8,7 @@ local donationMet = false
 
 local function CreateDonateMenu(dsheet)
     local GetTranslation = LANG.GetTranslation
-    local dform = vgui.Create("DForm", parent)
+    local dform = vgui.Create("DForm", dsheet)
     dform:SetName(GetTranslation("donate_menutitle"))
     dform:StretchToParent(0, 0, 0, 0)
     dform:SetAutoSize(false)

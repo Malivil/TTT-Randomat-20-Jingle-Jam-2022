@@ -19,7 +19,6 @@ function EVENT:Begin()
     local fade_sent = false
     local snap_time = CurTime() + death_delay
     local ply_info = {}
-    ply_kill_timers = {}
 
     net.Start("RdmtTheSnapBegin")
     net.Broadcast()

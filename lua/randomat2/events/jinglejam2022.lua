@@ -36,8 +36,8 @@ function EVENT:Begin()
     -- Let everyone loot credits
     if not oldCanLootCredits then
         oldCanLootCredits = plymeta.CanLootCredits
-        function plymeta:CanLootCredits(active_only)
-            if active_only and not self:IsActive() then return false end
+        plymeta.CanLootCredits = function(ply, active_only)
+            if active_only and not ply:IsActive() then return false end
             return true
         end
     end
