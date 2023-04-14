@@ -31,7 +31,7 @@ function GIFT:Choose(owner, target)
 
     hook.Add("PlayerDeath", hookId .. "_PlayerDeath", function(victim, entity, killer)
         if not IsValid(victim) or target ~= victim then return end
-        SetPlayerVisibility(ply, true)
+        SetPlayerVisibility(victim, true)
     end)
 
     hook.Add("EntityFireBullets", hookId .. "_EntityFireBullets", function(entity, data)
