@@ -33,7 +33,7 @@ local function UnjamWeapon(weap)
 end
 
 net.Receive("RdmtSecretSantaWeaponJamsStart", function()
-    if not client then
+    if not IsPlayer(client) then
         client = LocalPlayer()
     end
 
@@ -44,7 +44,7 @@ net.Receive("RdmtSecretSantaWeaponJamsStart", function()
 end)
 
 net.Receive("RdmtSecretSantaWeaponJamsStop", function()
-    if not client then
+    if not IsPlayer(client) then
         client = LocalPlayer()
     end
 
@@ -55,9 +55,14 @@ net.Receive("RdmtSecretSantaWeaponJamsStop", function()
 end)
 
 net.Receive("RdmtSecretSantaWeaponJamsEnd", function()
-    if not client then
+    if not IsPlayer(client) then
         client = LocalPlayer()
     end
+
+    -- If we still don't have a client it's because we're not loaded yet
+    -- This can happen because the Randomat "ends" all events during the Prep phase so if
+    -- a player is still loading at that point then `LocalPlayer` would return a NULL Entity
+    if not client or not IsPlayer(client) or not client.GetWeapons then return end
 
     for _, w in ipairs(client:GetWeapons()) do
         UnjamWeapon(w)
