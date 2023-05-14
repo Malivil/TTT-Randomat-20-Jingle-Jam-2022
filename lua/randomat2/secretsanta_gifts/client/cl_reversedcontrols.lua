@@ -27,7 +27,7 @@ net.Receive("RdmtSecretSantaReversedControlsBegin", function()
         end
     end)
 
-    -- Override the sprint key so players can sprint forward while holding the back key
+    -- Override the sprint key so the player can sprint forward while holding the back key
     hook.Add("TTTSprintKey", "RdmtSecretSantaReversedControls_TTTSprintKey", function(ply)
         if ply ~= client then return end
 

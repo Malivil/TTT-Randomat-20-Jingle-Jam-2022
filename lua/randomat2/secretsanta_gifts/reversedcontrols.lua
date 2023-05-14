@@ -41,12 +41,20 @@ function GIFT:Choose(owner, target)
         if not IsValid(victim) or victim ~= target then return end
         FixControls(target)
     end)
+
+    -- Override the sprint key so the target player can sprint forward while holding the back key
+    hook.Add("TTTSprintKey", hookId .. "_TTTSprintKey", function(ply)
+        if ply ~= target then return end
+
+        return IN_BACK
+    end)
 end
 
 function GIFT:CleanUp()
     for _, hookId in ipairs(hookIds) do
         hook.Remove("PlayerSpawn", hookId .. "_PlayerSpawn")
         hook.Remove("PlayerDeath", hookId .. "_PlayerDeath")
+        hook.Remove("TTTSprintKey", hookId .. "_TTTSprintKey")
     end
     table.Empty(hookIds)
 

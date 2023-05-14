@@ -88,10 +88,17 @@ function EVENT:Begin()
                 timer.Adjust("RdmtJingleAllTheWayCackle", MathRandom(min, max), 0, nil)
             end)
         end
-    end)
 
-    net.Start("RdmtJingleAllTheWayBegin")
-    net.Broadcast()
+        -- Increase stamina recovery
+        self:AddHook("TTTSprintStaminaRecovery", function(ply, recovery)
+            if IsPlayer(ply) and not ply:IsLootGoblin() then
+                return GetGlobalFloat("ttt_lootgoblin_sprint_recovery", 0.12)
+            end
+        end)
+
+        net.Start("RdmtJingleAllTheWayBegin")
+        net.Broadcast()
+    end)
 end
 
 function EVENT:End()
