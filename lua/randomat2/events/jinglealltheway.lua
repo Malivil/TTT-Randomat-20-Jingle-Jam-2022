@@ -92,7 +92,7 @@ function EVENT:Begin()
         -- Increase stamina recovery
         self:AddHook("TTTSprintStaminaRecovery", function(ply, recovery)
             if IsPlayer(ply) and not ply:IsLootGoblin() then
-                return GetGlobalFloat("ttt_lootgoblin_sprint_recovery", 0.12)
+                return GetConVar("ttt_lootgoblin_sprint_recovery"):GetFloat()
             end
         end)
 
