@@ -52,7 +52,7 @@ function GIFT:AddConVars(sliders, checks, textboxes)
 end
 
 function GIFT:Condition()
-    return GetConVar("ttt_sprint_enabled"):GetBool() and CRVersion("7.2.3")
+    return cvars.Bool("ttt_sprint_enabled", false)
 end
 
 SECRETSANTA:RegisterGift(GIFT)
