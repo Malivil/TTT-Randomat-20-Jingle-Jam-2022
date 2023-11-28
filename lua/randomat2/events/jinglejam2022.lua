@@ -3,6 +3,11 @@ if not plymeta then return end
 
 local EVENT = {}
 
+local ipairs = ipairs
+local player = player
+
+local GetAllPlayers = player.GetAll
+
 util.AddNetworkString("RdmtJingleJam2022Begin")
 util.AddNetworkString("RdmtJingleJam2022End")
 util.AddNetworkString("RdmtJingleJam2022Donation")
@@ -121,9 +126,7 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
 
     local credits = net.ReadUInt(8)
     if credits > ply:GetCredits() then
-        local errorMessage = "You don't have enough credits to donate " .. credits
-        ply:PrintMessage(HUD_PRINTCENTER, errorMessage)
-        ply:PrintMessage(HUD_PRINTTALK, errorMessage)
+        Randomat:PrintMessage(ply, MSG_PRINTBOTH, "You don't have enough credits to donate " .. credits)
         return
     end
 
@@ -160,8 +163,10 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
     if donationMet then
         message = message .. "\n\n" .. "GOAL REACHED!"
     end
-    PrintMessage(HUD_PRINTCENTER, message)
-    PrintMessage(HUD_PRINTTALK, message)
+
+    for _, p in ipairs(GetAllPlayers()) do
+        Randomat:PrintMessage(p, MSG_PRINTBOTH, message)
+    end
 
     -- Subtract the donation from the player
     ply:AddCredits(-credits)

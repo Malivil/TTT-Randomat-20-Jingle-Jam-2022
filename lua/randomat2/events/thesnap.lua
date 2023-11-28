@@ -62,8 +62,7 @@ function EVENT:Begin()
     local living_players = self:GetAlivePlayers(true)
     local kill_count = math.floor(#living_players / 2)
     for _, p in ipairs(living_players) do
-        p:PrintMessage(HUD_PRINTTALK, "You don't feel so good...")
-        p:PrintMessage(HUD_PRINTCENTER, "You don't feel so good...")
+        Randomat:PrintMessage(p, MSG_PRINTBOTH, "You don't feel so good...")
         p:SetNWBool("RdmtTheSnapKilled", true)
         p:SetNWBool("RdmtTheSnapDissolve", true)
 

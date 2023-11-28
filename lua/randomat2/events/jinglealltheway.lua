@@ -1,6 +1,11 @@
 local EVENT = {}
 
+local ipairs = ipairs
+local math = math
+local player = player
+
 local MathRandom = math.random
+local GetAllPlayers = player.GetAll
 
 util.AddNetworkString("RdmtJingleAllTheWayBegin")
 util.AddNetworkString("RdmtJingleAllTheWayEnd")
@@ -35,8 +40,9 @@ function EVENT:Begin()
         local goblinAlive = player.IsRoleLiving(ROLE_LOOTGOBLIN)
         if not goblinAlive then
             local message = string.Capitalize(ROLE_STRINGS_EXT[ROLE_LOOTGOBLIN]) .. " has been killed! Christmas is cancelled!"
-            PrintMessage(HUD_PRINTTALK, message)
-            PrintMessage(HUD_PRINTCENTER, message)
+            for _, ply in ipairs(GetAllPlayers()) do
+                Randomat:PrintMessage(ply, MSG_PRINTBOTH, message)
+            end
             return
         end
 

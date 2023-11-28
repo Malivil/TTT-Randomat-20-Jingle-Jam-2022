@@ -25,8 +25,7 @@ function GIFT:Choose(owner, target)
             if IsValid(body) then
                 body:Remove()
             end
-            victim:PrintMessage(HUD_PRINTTALK, "You have been respawned with your extra life!")
-            victim:PrintMessage(HUD_PRINTCENTER, "You have been respawned with your extra life!")
+            Randomat:PrintMessage(victim, MSG_PRINTBOTH, "You have been respawned with your extra life!")
             target:SetNWBool("RdmtSecretSantaExtraLife", false)
         end)
     end)

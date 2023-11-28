@@ -60,8 +60,7 @@ function GIFT:JamWeapon(ply, weap)
             local owner = w:GetOwner()
             if IsPlayer(owner) and not w.JammedMessage then
                 w.JammedMessage = true
-                owner:PrintMessage(HUD_PRINTTALK, "Your weapon has jammed!")
-                owner:PrintMessage(HUD_PRINTCENTER, "Your weapon has jammed!")
+                Randomat:PrintMessage(owner, MSG_PRINTBOTH, "Your weapon has jammed!")
             end
         end
 
@@ -96,8 +95,7 @@ function GIFT:UnjamWeapon(ply, weap)
         -- If the player knows their weapon was jammed, let them know they've unjammed it
         local owner = weap:GetOwner()
         if IsPlayer(owner) and weap.JammedMessage then
-            owner:PrintMessage(HUD_PRINTTALK, "You have cleared your jammed weapon!")
-            owner:PrintMessage(HUD_PRINTCENTER, "You have cleared your jammed weapon!")
+            Randomat:PrintMessage(owner, MSG_PRINTBOTH, "You have cleared your jammed weapon!")
         end
 
         net.Start("RdmtSecretSantaWeaponJamsStop")
