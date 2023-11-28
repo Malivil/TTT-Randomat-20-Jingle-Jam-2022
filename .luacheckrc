@@ -1107,7 +1107,30 @@ globals = {
 
     -- External addon constants and namespaces
     "EQUIP_PHD",
-    "ULib"
+    "ULib",
+
+	-- JJ2022
+	"FAKER_READY",
+	"FAKER_MISSING_LOS",
+	"FAKER_MISSING_RANGE",
+	"FAKER_MISSING_BOTH",
+	"FAKER_WEAPON_NONE",
+	"FAKER_WEAPON_FAKE",
+	"FAKER_WEAPON_USED",
+	"KRAMPUS_NAUGHTY_NONE",
+	"KRAMPUS_NAUGHTY_DAMAGE",
+	"KRAMPUS_NAUGHTY_KILL",
+	"KRAMPUS_NAUGHTY_OTHER",
+	"ROLE_DETECTOCLOWN",
+	"ROLE_FAKER",
+	"ROLE_KRAMPUS",
+	"WIN_DETECTOCLOWN",
+	"WIN_FAKER",
+	"WIN_KRAMPUS",
+	"MarkPlayerNaughty",
+
+	-- JJ2022 Randomat
+	"SECRETSANTA"
 }
 std = {
     globals = {
