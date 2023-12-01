@@ -227,7 +227,7 @@ _ttt_randomat_thesnap_weight_ - Default: -1 - The weight this event should use d
 _randomat_thesnap_fadetime_ - Default: 5 - The amount of time the "Five years later" fade lasts.\
 _randomat_thesnap_deathdelay_ - Default: 5 - The amount of time before the chosen players are killed.\
 
-## Special Thanks
+# Special Thanks
 - Angela of the Lonely Yogs for helping find resources for the "Jingle Jam 2022" event
 - Harry and Nick of the Yogscast for providing the bar texture for the "Jingle Jam 2022" event
 - Kevin Macleod for the donation complete song used in the "Jingle Jam 2022" event, [Who Likes to Party](https://incompetech.com/music/royalty-free/index.html?Search=Search&isrc=USUAN1200075)
