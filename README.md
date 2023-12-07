@@ -46,76 +46,106 @@ Gifts that benefit the target player
 Gives the target player a bonus to the damage they to do others.
 
 #### ConVars
+_randomat_secretsanta_damagebonus_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_damagebonus_bonus_ - Default: 0.5 - The outgoing damage bonus factor. A value of `0.5` means a 50% bonus for a total of 150% of normal damage done.
 
 ### *Damage Resistance*
 Gives the target player a resistance to the damage done to them.
 
 #### ConVars
+_randomat_secretsanta_damageresistance_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_damageresistance_resistance_ - Default: 0.3 - The incoming damage resistance factor. A value of `0.3` means a 30% resistance for a total of 70% of normal damage received.
 
 ### *Defibrillator*
 Gives the target player a defibrillator, allowing them to resurrect other players.
 
+#### ConVars
+_randomat_secretsanta_defibrillator_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Explosion Immunity*
 Gives the target player immunity to explosions, preventing explosion damage from harming them.
+
+#### ConVars
+_randomat_secretsanta_explosionimmunity_enabled_ - Default: 1 - Whether this gift is enabled.
 
 ### *Extra HP*
 Gives the target player more health and more maximum health.
 
 #### ConVars
+_randomat_secretsanta_extrahp_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_extrahp_amount_ - Default: 50 - The amount of HP and Maximum HP to give the target.
 
 ### *Extra Life*
 Gives the target player an extra life, respawning them automatically when they die the first time.
 
+#### ConVars
+_randomat_secretsanta_extralife_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Health Regen*
 Gives the target player health regeneration, slowly giving them back any lost health over time.
 
 #### ConVars
+_randomat_secretsanta_hpregen_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_hpregen_amount_ - Default: 1 - How much health to give each interval.\
 _randomat_secretsanta_hpregen_interval_ - Default: 5 - How often (in seconds) to heal the player.
 
 ### *Health Station*
 Gives the target player a deployable health station.
 
+#### ConVars
+_randomat_secretsanta_healthstation_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Invisible Crouching*
 Causes the target player to go invisible when they crouch, making it easier for them to hide.
 
 #### ConVars
+_randomat_secretsanta_crouchinvis_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_crouchinvis_reveal_timer_ - Default: 3 - How long (in seconds) to make the target player visible again after they shoot their weapon.
 
 ### *One-Shot Knife*
 Gives the target player a knife that can kill in one hit.
 
+#### ConVars
+_randomat_secretsanta_oneshotknife_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Radar*
 Gives the target player radar.
+
+#### ConVars
+_randomat_secretsanta_radar_enabled_ - Default: 1 - Whether this gift is enabled.
 
 ### *Shrink Player*
 Causes the target player to shrink smaller in size.
 
 #### ConVars
+_randomat_secretsanta_shrink_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_shrink_scale_ - Default: 0.5 - The shrinking scale factor. A value of `0.5` means 50% of normal size, a 50% decrease.
 
 ### *Speed Boost*
 Gives the target player a boost to their movement speed.
 
 #### ConVars
+_randomat_secretsanta_speedboost_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_speedboost_mult_ - Default: 1.25 - The speed multiplier. A value of `1.25` means 125% of normal movement speed, a 25% boost.
 
 ### *Sprint Speed*
 Gives the target player a boost to their movement speed while sprinting.
 
 #### ConVars
+_randomat_secretsanta_sprintspeed_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_sprintspeed_mult_ - Default: 1.25 - The speed multiplier. A value of `1.25` means 125% of normal sprinting speed, a 25% boost.
 
 ### *Teleporter*
 Gives the target player a teleporter.
 
+#### ConVars
+_randomat_secretsanta_teleporter_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Unlimited Ammo*
 Gives the target player unlimited ammunition in their current weapon meaning they will never have to reload.
 
 #### ConVars
+_randomat_secretsanta_unlimitedammo_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_unlimitedammo_affectbuymenu_ - Default: 0 - Whether it gives buy menu weapons infinite ammo too.
 
 ### Naughty Gifts
@@ -124,64 +154,89 @@ Gifts that are to the detriment of the target player.
 ### *Blind...ish*
 Causes the target player to go blind however they can see the outlines of players, even through walls.
 
+#### ConVars
+_randomat_secretsanta_blindish_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Butterfingers*
 Causes the target player to periodically drop their active weapon.
 
 #### ConVars
-_randomat_secretsanta_butterfingers_time_min_ - Default: 10 - The minimum amount of time (in seconds) between weapon drops.
+_randomat_secretsanta_butterfingers_enabled_ - Default: 1 - Whether this gift is enabled.\
+_randomat_secretsanta_butterfingers_time_min_ - Default: 10 - The minimum amount of time (in seconds) between weapon drops.\
 _randomat_secretsanta_butterfingers_time_max_ - Default: 30 - The maximum amount of time (in seconds) between weapon drops.
 
 ### *Changed FOV*
 Changes the target's field-of-view (FOV) to make it more difficult for them to see.
 
 #### ConVars
+_randomat_secretsanta_changedfov_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_changedfov_scale_ - Default: 1.5 - Scale of the FOV increase.\
 _randomat_secretsanta_changedfov_scale_ironsight_ - Default: 1.0 - Scale of the FOV increase when ironsighted.
 
 ### *Crab Walk*
 Causes the target player to only be able to move sideways.
 
+#### ConVars
+_randomat_secretsanta_crabwalk_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Damage Penalty*
 Gives the target player a penalty to the damage they to do others.
 
 #### ConVars
+_randomat_secretsanta_damagepenalty_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_damagepenalty_penalty_ - Default: 0.3 - The outgoing damage penalty factor. A value of `0.3` means a 30% penalty for a total of 70% of normal damage done.
 
 ### *Flipped Screen*
 Flips the target player's screen so everything appears upside-down.
 
+#### ConVars
+_randomat_secretsanta_flipscreen_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Grow Player*
 Causes the target player to grow larger in size.
 
 #### ConVars
+_randomat_secretsanta_grow_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_grow_scale_ - Default: 1.5 - The growing scale factor. A value of `1.5` means 150% of normal size, a 50% increase.
 
 ### *Less Ammo*
 Causes the target player to use twice as much ammunition when firing their gun.
 
+#### ConVars
+_randomat_secretsanta_lessammo_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Locked Camera*
 Locks the target's camera, preventing it from moving up and down.
+
+#### ConVars
+_randomat_secretsanta_lockedcamera_enabled_ - Default: 1 - Whether this gift is enabled.
 
 ### *Move Slowly*
 Reduce's the target player's movement speed.
 
 #### ConVars
+_randomat_secretsanta_speedreduction_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_speedreduction_mult_ - Default: 0.75 - The speed multiplier. A value of `0.75` means 75% of normal movement speed, a 25% boost.
 
 ### *Paranoia*
 Causes the target player to randomly hear death noises, gun shots and C4 beeps.
 
 #### ConVars
-_randomat_secretsanta_paranoia_timer_min_ - Default: 15 - The minimum time (in seconds) between noises caused by paranoia.
+_randomat_secretsanta_paranoia_enabled_ - Default: 1 - Whether this gift is enabled.\
+_randomat_secretsanta_paranoia_timer_min_ - Default: 15 - The minimum time (in seconds) between noises caused by paranoia.\
 _randomat_secretsanta_paranoia_timer_max_ - Default: 30 - The maximum time (in seconds) between noises caused by paranoia.
 
 ### *Permanent H.U.G.E.*
 Gives the target a H.U.G.E. with infinite ammunition that cannot be dropped.
 
+#### ConVars
+_randomat_secretsanta_undroppablehuge_enabled_ - Default: 1 - Whether this gift is enabled.
+
 ### *Poison*
 Poisons the target player, slowly damaging them over time.
 
 #### ConVars
+_randomat_secretsanta_poison_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_poison_amount_ - Default: 1 - How much damage to do each interval.\
 _randomat_secretsanta_poison_interval_ - Default: 5 - How often (in seconds) to damage the player.\
 _randomat_secretsanta_poison_max_ - Default: 0 - The maximum total damage to do. Set to 0 to disable, causing damage forever.
@@ -190,6 +245,7 @@ _randomat_secretsanta_poison_max_ - Default: 0 - The maximum total damage to do.
 Periodically changes the targets mouse sensitivity.
 
 #### ConVars
+_randomat_secretsanta_randomsensitivity_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_randomsensitivity_change_interval_ - Default: 15 - How often to change the player's sensitivity.\
 _randomat_secretsanta_randomsensitivity_scale_min_ - Default: 25 - The minimum sensitivity to use.\
 _randomat_secretsanta_randomsensitivity_scale_max_ - Default: 500 - The maximum sensitivity to use.
@@ -198,18 +254,21 @@ _randomat_secretsanta_randomsensitivity_scale_max_ - Default: 500 - The maximum 
 Reduces the target player's health and maximum health.
 
 #### ConVars
+_randomat_secretsanta_reducehp_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_reducehp_factor_ - Default: 0.5 - The health reduction factor. A value of `0.5` means the target player will have 50% less HP and maximum HP.
 
 ### *Reversed Controls*
 Reverses the target's controls, swapping forward/backward, left/right, and fire/reload. If "hard mode" is enabled, jump/crouch are also swapped.
 
 #### ConVars
+_randomat_secretsanta_reversedcontrols_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_reversedcontrols_hardmode_ - Default: 1 - Whether to enable "hard mode" and also swap the Jump and Crouch controls.
 
 ### *Weapon Jams*
 Periodically jams the target's weapons, preventing them from firing any bullets
 
 #### ConVars
+_randomat_secretsanta_weaponjams_enabled_ - Default: 1 - Whether this gift is enabled.\
 _randomat_secretsanta_weaponjams_interval_min_ - Default: 30 - The minimum time (in seconds) between weapon jams.\
 _randomat_secretsanta_weaponjams_interval_max_ - Default: 60 - The maximum time (in seconds) between weapon jams.\
 _randomat_secretsanta_weaponjams_duration_ - Default: 5 - The amount of time (in seconds) weapons should stay jammed for.
