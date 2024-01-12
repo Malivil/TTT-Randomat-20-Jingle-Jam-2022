@@ -13,7 +13,7 @@ util.AddNetworkString("RdmtJingleAllTheWayEnd")
 EVENT.Title = "Jingle All the Way"
 EVENT.Description = "If everyone jingles, how will you ever find the Loot Goblin?"
 EVENT.id = "jinglealltheway"
-EVENT.Categories = {"fun", "mediumimpact"}
+EVENT.Categories = {"fun", "moderateimpact"}
 
 local cackles = {
     Sound("lootgoblin/cackle1.wav"),
