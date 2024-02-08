@@ -58,7 +58,6 @@ net.Receive("RdmtSecretSantaEnd", function()
         secretSantaFrame = nil
     end
 
-    hook.Remove("TTTBodySearchEquipment", "RdmtTTTBodySearchEquipment")
     hook.Remove("TTTBodySearchPopulate", "RdmtSecretSantaSearchPopulate")
     targetPlayer = nil
 end)
