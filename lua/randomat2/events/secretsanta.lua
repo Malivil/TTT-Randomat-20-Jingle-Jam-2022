@@ -32,8 +32,6 @@ util.AddNetworkString("RdmtSecretSantaBegin")
 util.AddNetworkString("RdmtSecretSantaChoose")
 util.AddNetworkString("RdmtSecretSantaEnd")
 
-resource.AddFile("materials/vgui/ttt/icon_secretsanta.vmt")
-
 CreateConVar("randomat_secretsanta_niceoptions", 2, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The number of nice gift options to give each player", 1, 10)
 CreateConVar("randomat_secretsanta_naughtyoptions", 1, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The number of naughty gift options to give each player", 1, 10)
 

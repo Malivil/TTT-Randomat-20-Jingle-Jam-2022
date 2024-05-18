@@ -13,10 +13,6 @@ util.AddNetworkString("RdmtJingleJam2022End")
 util.AddNetworkString("RdmtJingleJam2022Donation")
 util.AddNetworkString("RdmtJingleJam2022RoundSound")
 
-resource.AddSingleFile("materials/vgui/ttt/pattern_money.png")
-resource.AddSingleFile("materials/vgui/ttt/pattern_money_gold.png")
-resource.AddSingleFile("sound/randomat/wholikestoparty.mp3")
-
 CreateConVar("randomat_jinglejam2022_mult", 1, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The multiplier used when calculating the number of credits to win", 0.1, 5)
 
 EVENT.Title = "Jingle Jam 2022"
