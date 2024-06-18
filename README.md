@@ -27,7 +27,7 @@ _ttt_randomat_jinglejam2022_weight_ - Default: -1 - The weight this event should
 _randomat_jinglejam2022_mult_ - Default: 1 - The multiplier used when calculating the number of credits to win.
 
 ## Secret Santa
-_Suggested By_: Noxx\
+_Contributed By_: Noxx\
 Every player gets a choice of presents to send, in secret. Will you be nice... or naughty?
 \
 \
