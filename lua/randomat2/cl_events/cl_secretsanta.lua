@@ -2,7 +2,6 @@ local EVENT = {}
 EVENT.id = "secretsanta"
 
 local secretSantaFrame = nil
-local targetPlayer = nil
 function EVENT:End()
     if IsValid(secretSantaFrame) then
         secretSantaFrame:Close()
@@ -10,7 +9,6 @@ function EVENT:End()
     end
 
     hook.Remove("TTTBodySearchPopulate", "RdmtSecretSantaSearchPopulate")
-    targetPlayer = nil
 end
 
 Randomat:register(EVENT)
@@ -18,8 +16,6 @@ Randomat:register(EVENT)
 local choiceName = nil
 net.Receive("RdmtSecretSantaBegin", function()
     local ply = LocalPlayer()
-
-    targetPlayer = net.ReadString()
     local choices = net.ReadTable()
 
     secretSantaFrame = vgui.Create("DFrame")
@@ -53,9 +49,15 @@ net.Receive("RdmtSecretSantaBegin", function()
     end
 
     hook.Add("TTTBodySearchPopulate", "RdmtSecretSantaSearchPopulate", function(search, raw)
-        local message = "Secret Santa\n\tRecipient: " .. targetPlayer
-        if choiceName ~= nil then
-            message = message .. "\n\tGift: " .. choiceName
+        if not raw.owner then return end
+
+        local targetName = raw.owner:GetNWString("RdmtSecretSantaTarget", "")
+        if #targetName == 0 then return end
+
+        local message = "Secret Santa\n\tRecipient: " .. targetName
+        local targetChoice = raw.owner:GetNWString("RdmtSecretSantaChoice", "")
+        if #targetChoice > 0 then
+            message = message .. "\n\tGift: " .. targetChoice
         end
         search["rdmtsecretsanta"] = {
             text = message,

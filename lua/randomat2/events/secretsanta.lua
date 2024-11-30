@@ -94,12 +94,14 @@ function EVENT:Begin()
     local current = alivePlayers[1]:SteamID64()
     local recip = alivePlayers[#alivePlayers]
     plyRecipients[current] = recip
+    alivePlayers[1]:SetNWString("RdmtSecretSantaTarget", recip:Nick())
 
     -- And then assign everyone else in twos, the "current" to the "previous"
     for idx=2, #alivePlayers do
         current = alivePlayers[idx]:SteamID64()
         recip = alivePlayers[idx - 1]
         plyRecipients[current] = recip
+        alivePlayers[idx]:SetNWString("RdmtSecretSantaTarget", recip:Nick())
     end
 
     local niceKeys = table.GetKeys(SECRETSANTA.NiceGifts)
@@ -119,7 +121,6 @@ function EVENT:Begin()
             -- Send options to pairs
             recip = plyRecipients[ply:SteamID64()]
             net.Start("RdmtSecretSantaBegin")
-            net.WriteString(recip:Nick())
             net.WriteTable(options)
             net.Send(ply)
 
@@ -131,6 +132,10 @@ end
 
 function EVENT:End()
     CleanUpGifts()
+    for _, p in player.Iterator() do
+        p:SetNWString("RdmtSecretSantaTarget", "")
+        p:SetNWString("RdmtSecretSantaChoice", "")
+    end
 end
 
 local function AddGiftConVars(gift, sliders, checks, textboxes)
@@ -197,6 +202,8 @@ net.Receive("RdmtSecretSantaChoose", function(len, ply)
         ply:PrintMessage(HUD_PRINTTALK, "'" .. giftId .. "' is not a valid gift.")
         return
     end
+
+    ply:SetNWString("RdmtSecretSantaChoice", gift.Name)
 
     if plyGifts[sid64] then
         ply:PrintMessage(HUD_PRINTTALK, "You've already sent a present to your recipient.")
