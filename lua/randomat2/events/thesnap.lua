@@ -86,7 +86,7 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
-    for _, p in ipairs(player.GetAll()) do
+    for _, p in player.Iterator() do
         local sid64 = p:SteamID64()
         timer.Remove("RdmtTheSnapKill_" .. sid64)
         timer.Remove("RdmtTheSnapMessage_" .. sid64)

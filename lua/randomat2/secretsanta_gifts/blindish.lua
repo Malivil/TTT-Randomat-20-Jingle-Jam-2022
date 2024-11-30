@@ -14,7 +14,7 @@ function GIFT:Choose(owner, target)
 end
 
 function GIFT:CleanUp()
-    for _, p in ipairs(player.GetAll()) do
+    for _, p in player.Iterator() do
         p:ScreenFade(SCREENFADE.PURGE, Color(0, 0, 0, 255), 0, 0)
     end
 

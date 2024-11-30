@@ -11,7 +11,7 @@ function GIFT:Choose(owner, target)
 end
 
 function GIFT:CleanUp()
-    for _, p in ipairs(player.GetAll()) do
+    for _, p in player.Iterator() do
         Randomat:ResetPlayerScale(p, "SecretSanta_Shrink")
     end
 end

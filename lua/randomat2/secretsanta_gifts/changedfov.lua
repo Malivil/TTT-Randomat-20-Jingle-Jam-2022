@@ -67,7 +67,7 @@ function GIFT:CleanUp()
     end
     table.Empty(timerIds)
 
-    for _, v in ipairs(player.GetAll()) do
+    for _, v in player.Iterator() do
         v:SetFOV(0, 0)
     end
     table.Empty(originalFOV)

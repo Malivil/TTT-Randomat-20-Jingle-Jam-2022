@@ -6,7 +6,7 @@ net.Receive("RdmtSecretSantaBlindishBegin", function()
     local client = LocalPlayer()
     hook.Add("PreDrawHalos", "RdmtSecretSantaBlindish_PreDrawHalos", function()
         local alivePlys = {}
-        for _, v in ipairs(player.GetAll()) do
+        for _, v in player.Iterator() do
             if v ~= client and v:Alive() and not v:IsSpec() and not IsTargetHighlighted(client, v) then
                 table.insert(alivePlys, v)
             end

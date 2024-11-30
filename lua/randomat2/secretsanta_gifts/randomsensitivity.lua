@@ -57,7 +57,7 @@ function GIFT:CleanUp()
     end
     table.Empty(timerAndHookIds)
 
-    for _, v in ipairs(player.GetAll()) do
+    for _, v in player.Iterator() do
         SetSensitivity(v, 0)
     end
 end

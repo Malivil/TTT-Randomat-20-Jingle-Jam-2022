@@ -59,7 +59,7 @@ function GIFT:CleanUp()
     end
     table.Empty(hookIds)
 
-    for _, p in ipairs(player.GetAll()) do
+    for _, p in player.Iterator() do
         SetPlayerVisibility(p, true)
         timer.Remove("RdmtTSecretSantaCrouchInvisRevealTimer_" .. p:SteamID64())
     end

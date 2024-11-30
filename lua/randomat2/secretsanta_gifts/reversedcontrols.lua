@@ -58,7 +58,7 @@ function GIFT:CleanUp()
     end
     table.Empty(hookIds)
 
-    for _, p in ipairs(player.GetAll()) do
+    for _, p in player.Iterator() do
         p:SetLadderClimbSpeed(200)
     end
 

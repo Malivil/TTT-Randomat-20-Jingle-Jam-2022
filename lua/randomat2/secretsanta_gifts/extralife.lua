@@ -50,7 +50,7 @@ function GIFT:CleanUp()
     end
     table.Empty(timerIds)
 
-    for _, p in ipairs(player.GetAll()) do
+    for _, p in player.Iterator() do
         p:SetNWBool("RdmtSecretSantaExtraLife", false)
     end
 end

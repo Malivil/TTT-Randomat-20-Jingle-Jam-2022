@@ -6,7 +6,7 @@ local EVENT = {}
 local ipairs = ipairs
 local player = player
 
-local GetAllPlayers = player.GetAll
+local PlayerIterator = player.Iterator
 
 util.AddNetworkString("RdmtJingleJam2022Begin")
 util.AddNetworkString("RdmtJingleJam2022Donation")
@@ -156,7 +156,7 @@ net.Receive("RdmtJingleJam2022Donation", function(len, ply)
         message = message .. "\n\n" .. "GOAL REACHED!"
     end
 
-    for _, p in ipairs(GetAllPlayers()) do
+    for _, p in PlayerIterator() do
         Randomat:PrintMessage(p, MSG_PRINTBOTH, message)
     end
 
