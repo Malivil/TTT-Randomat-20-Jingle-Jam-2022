@@ -3,7 +3,7 @@ local GIFT = {}
 GIFT.Name = "Damage Resistance"
 GIFT.Id = "damageresistance"
 
-local damageresistance_resistance = CreateConVar("randomat_secretsanta_damageresistance_resistance", "0.3", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Incoming damage reduction.", 0, 1)
+local damageresistance_resistance = CreateConVar("randomat_secretsanta_damageresistance_resistance", "0.3", FCVAR_ARCHIVE, "Incoming damage reduction.", 0, 1)
 
 local hookIds = {}
 

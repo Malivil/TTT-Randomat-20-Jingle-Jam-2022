@@ -1,10 +1,7 @@
 local EVENT = {}
 
-util.AddNetworkString("RdmtTheSnapBegin")
-util.AddNetworkString("RdmtTheSnapEnd")
-
-CreateConVar("randomat_thesnap_fadetime", 5, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The amount of time the \"Five years later\" fade lasts", 3, 60)
-CreateConVar("randomat_thesnap_deathdelay", 5, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "The amount of time before the chosen players are killed", 1, 60)
+CreateConVar("randomat_thesnap_fadetime", 5, FCVAR_ARCHIVE, "The amount of time the \"Five years later\" fade lasts", 3, 60)
+CreateConVar("randomat_thesnap_deathdelay", 5, FCVAR_ARCHIVE, "The amount of time before the chosen players are killed", 1, 60)
 
 EVENT.Title = "The Snap"
 EVENT.Description = "Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends"
@@ -19,9 +16,6 @@ function EVENT:Begin()
     local fade_sent = false
     local snap_time = CurTime() + death_delay
     local ply_info = {}
-
-    net.Start("RdmtTheSnapBegin")
-    net.Broadcast()
 
     self:AddHook("TTTWinCheckBlocks", function(win_blocks)
         -- If the snap is gone and done with, stop checking the wins
@@ -92,9 +86,6 @@ function EVENT:Begin()
 end
 
 function EVENT:End()
-    net.Start("RdmtTheSnapEnd")
-    net.Broadcast()
-
     for _, p in ipairs(player.GetAll()) do
         local sid64 = p:SteamID64()
         timer.Remove("RdmtTheSnapKill_" .. sid64)

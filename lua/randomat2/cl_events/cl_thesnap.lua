@@ -2,7 +2,10 @@ local math = math
 
 local MathRand = math.Rand
 
-net.Receive("RdmtTheSnapBegin", function()
+local EVENT = {}
+EVENT.id = "thesnap"
+
+function EVENT:Begin()
     local client = LocalPlayer()
     local grey_min = 105
     local grey_max = 220
@@ -13,8 +16,10 @@ net.Receive("RdmtTheSnapBegin", function()
             return v:GetNWBool("RdmtTheSnapDissolve", false)
         end, Color(grey, grey, grey), nil, 1, 1)
     end)
-end)
+end
 
-net.Receive("RdmtTheSnapEnd", function()
+function EVENT:End()
     hook.Remove("Think", "RdmtTheSnapThink")
-end)
+end
+
+Randomat:register(EVENT)

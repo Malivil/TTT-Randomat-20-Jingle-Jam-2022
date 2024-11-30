@@ -3,7 +3,7 @@ local GIFT = {}
 GIFT.Name = "Damage Penalty"
 GIFT.Id = "damagepenalty"
 
-local damagepenalty_penalty = CreateConVar("randomat_secretsanta_damagepenalty_penalty", "0.3", {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Outgoing damage penalty.", 0, 1)
+local damagepenalty_penalty = CreateConVar("randomat_secretsanta_damagepenalty_penalty", "0.3", FCVAR_ARCHIVE, "Outgoing damage penalty.", 0, 1)
 
 local hookIds = {}
 

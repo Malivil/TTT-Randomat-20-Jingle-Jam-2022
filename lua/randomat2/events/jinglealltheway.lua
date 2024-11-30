@@ -8,7 +8,6 @@ local MathRandom = math.random
 local GetAllPlayers = player.GetAll
 
 util.AddNetworkString("RdmtJingleAllTheWayBegin")
-util.AddNetworkString("RdmtJingleAllTheWayEnd")
 
 EVENT.Title = "Jingle All the Way"
 EVENT.Description = "If everyone jingles, how will you ever find the Loot Goblin?"
@@ -110,9 +109,6 @@ end
 function EVENT:End()
     timer.Remove("RdmtJingleAllTheWayActivate")
     timer.Remove("RdmtJingleAllTheWayCackle")
-
-    net.Start("RdmtJingleAllTheWayEnd")
-    net.Broadcast()
 
     for _, v in ipairs(self:GetAlivePlayers()) do
         if not v:IsLootGoblin() then

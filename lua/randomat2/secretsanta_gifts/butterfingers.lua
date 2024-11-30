@@ -7,8 +7,8 @@ local MathRandom = math.random
 GIFT.Name = "Butterfingers"
 GIFT.Id = "butterfingers"
 
-local butterfingers_time_min = CreateConVar("randomat_secretsanta_butterfingers_time_min", 10, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Minimum time between weapon drops.", 5, 60)
-local butterfingers_time_max = CreateConVar("randomat_secretsanta_butterfingers_time_max", 30, {FCVAR_NOTIFY, FCVAR_ARCHIVE}, "Maximum time between weapon drops.", 5, 60)
+local butterfingers_time_min = CreateConVar("randomat_secretsanta_butterfingers_time_min", 10, FCVAR_ARCHIVE, "Minimum time between weapon drops.", 5, 60)
+local butterfingers_time_max = CreateConVar("randomat_secretsanta_butterfingers_time_max", 30, FCVAR_ARCHIVE, "Maximum time between weapon drops.", 5, 60)
 
 local timerIds = {}
 

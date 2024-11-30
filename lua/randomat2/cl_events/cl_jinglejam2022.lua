@@ -1,6 +1,23 @@
 local plymeta = FindMetaTable("Player")
 if not plymeta then return end
 
+local EVENT = {}
+EVENT.id = "jinglejam2022"
+
+local oldCanLootCredits
+function EVENT:End()
+    -- Reset this
+    if oldCanLootCredits then
+        plymeta.CanLootCredits = oldCanLootCredits
+        oldCanLootCredits = nil
+    end
+
+    hook.Remove("TTTEquipmentTabs", "RdmtJingleJam2022DonationTab")
+    hook.Remove("HUDPaint", "RdmtJingleJam2022HUDPaint")
+end
+
+Randomat:register(EVENT)
+
 local client = nil
 local donationGoal = nil
 local donationCurrent = 0
@@ -68,7 +85,6 @@ local function CreateDonateMenu(dsheet)
     return dform
 end
 
-local oldCanLootCredits
 net.Receive("RdmtJingleJam2022Begin", function()
     local GetTranslation = LANG.GetTranslation
     LANG.AddToLanguage("english", "donate_name", "Donate")
@@ -143,17 +159,6 @@ net.Receive("RdmtJingleJam2022Begin", function()
         surface.SetTextPos(barLeft + ((barWidth - textWidth) / 2) + borderThickness, barTop - donationMargin + donationInnerMargin - donationHeight)
         surface.DrawText(text)
     end)
-end)
-
-net.Receive("RdmtJingleJam2022End", function()
-    -- Reset this
-    if oldCanLootCredits then
-        plymeta.CanLootCredits = oldCanLootCredits
-        oldCanLootCredits = nil
-    end
-
-    hook.Remove("TTTEquipmentTabs", "RdmtJingleJam2022DonationTab")
-    hook.Remove("HUDPaint", "RdmtJingleJam2022HUDPaint")
 end)
 
 net.Receive("RdmtJingleJam2022Donation", function()

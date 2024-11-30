@@ -1,8 +1,21 @@
+local EVENT = {}
+EVENT.id = "secretsanta"
 
 local secretSantaFrame = nil
 local targetPlayer = nil
-local choiceName = nil
+function EVENT:End()
+    if IsValid(secretSantaFrame) then
+        secretSantaFrame:Close()
+        secretSantaFrame = nil
+    end
 
+    hook.Remove("TTTBodySearchPopulate", "RdmtSecretSantaSearchPopulate")
+    targetPlayer = nil
+end
+
+Randomat:register(EVENT)
+
+local choiceName = nil
 net.Receive("RdmtSecretSantaBegin", function()
     local ply = LocalPlayer()
 
@@ -50,14 +63,4 @@ net.Receive("RdmtSecretSantaBegin", function()
             p = 3
         }
     end)
-end)
-
-net.Receive("RdmtSecretSantaEnd", function()
-    if IsValid(secretSantaFrame) then
-        secretSantaFrame:Close()
-        secretSantaFrame = nil
-    end
-
-    hook.Remove("TTTBodySearchPopulate", "RdmtSecretSantaSearchPopulate")
-    targetPlayer = nil
 end)
