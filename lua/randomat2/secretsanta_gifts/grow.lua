@@ -3,7 +3,7 @@ local GIFT = {}
 GIFT.Name = "Grow Player"
 GIFT.Id = "grow"
 
-local grow_scale = CreateConVar("randomat_secretsanta_grow_scale", "1.5", FCVAR_ARCHIVE, "The growing scale factor", 1.1, 3.0)
+local grow_scale = CreateConVar("randomat_secretsanta_grow_scale", "1.5", FCVAR_NONE, "The growing scale factor", 1.1, 3.0)
 
 function GIFT:Choose(owner, target)
     local scale = grow_scale:GetFloat()

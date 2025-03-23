@@ -3,9 +3,9 @@ local GIFT = {}
 GIFT.Name = "Poison"
 GIFT.Id = "poison"
 
-local poison_amount = CreateConVar("randomat_secretsanta_poison_amount", "1", FCVAR_ARCHIVE, "How much damage to do.", 1, 100)
-local poison_interval = CreateConVar("randomat_secretsanta_poison_interval", "5", FCVAR_ARCHIVE, "How often to do damage.", 1, 100)
-local poison_max = CreateConVar("randomat_secretsanta_poison_max", "0", FCVAR_ARCHIVE, "The maximum total damage to do (0 to disable).", 0, 100)
+local poison_amount = CreateConVar("randomat_secretsanta_poison_amount", "1", FCVAR_NONE, "How much damage to do.", 1, 100)
+local poison_interval = CreateConVar("randomat_secretsanta_poison_interval", "5", FCVAR_NONE, "How often to do damage.", 1, 100)
+local poison_max = CreateConVar("randomat_secretsanta_poison_max", "0", FCVAR_NONE, "The maximum total damage to do (0 to disable).", 0, 100)
 
 local timerIds = {}
 

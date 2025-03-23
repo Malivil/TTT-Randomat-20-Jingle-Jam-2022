@@ -6,7 +6,7 @@ util.AddNetworkString("RdmtSecretSantaCrouchInvisEnd")
 GIFT.Name = "Invisible Crouching"
 GIFT.Id = "crouchinvis"
 
-local crouchinvis_reveal_timer = CreateConVar("randomat_secretsanta_crouchinvis_reveal_timer", "3", FCVAR_ARCHIVE, "How long to reveal after shooting.", 0, 30)
+local crouchinvis_reveal_timer = CreateConVar("randomat_secretsanta_crouchinvis_reveal_timer", "3", FCVAR_NONE, "How long to reveal after shooting.", 0, 30)
 
 local hookIds = {}
 

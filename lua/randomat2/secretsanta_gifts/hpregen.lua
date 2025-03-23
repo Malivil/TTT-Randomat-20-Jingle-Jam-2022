@@ -3,8 +3,8 @@ local GIFT = {}
 GIFT.Name = "Health Regen"
 GIFT.Id = "hpregen"
 
-local hpregen_amount = CreateConVar("randomat_secretsanta_hpregen_amount", "1", FCVAR_ARCHIVE, "How much health to give.", 1, 100)
-local hpregen_interval = CreateConVar("randomat_secretsanta_hpregen_interval", "5", FCVAR_ARCHIVE, "How often to heal.", 1, 100)
+local hpregen_amount = CreateConVar("randomat_secretsanta_hpregen_amount", "1", FCVAR_NONE, "How much health to give.", 1, 100)
+local hpregen_interval = CreateConVar("randomat_secretsanta_hpregen_interval", "5", FCVAR_NONE, "How often to heal.", 1, 100)
 
 local timerIds = {}
 

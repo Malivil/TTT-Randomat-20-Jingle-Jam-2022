@@ -5,9 +5,9 @@ util.AddNetworkString("RdmtSecretSantaRandomSensitivityValue")
 GIFT.Name = "Random Sensitivity"
 GIFT.Id = "randomsensitivity"
 
-local change_interval = CreateConVar("randomat_secretsanta_randomsensitivity_change_interval", 15, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Sensitivity change interval", 5, 60)
-local scale_min = CreateConVar("randomat_secretsanta_randomsensitivity_scale_min", 25, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Minimum sensitivity to use", 10, 100)
-local scale_max = CreateConVar("randomat_secretsanta_randomsensitivity_scale_max", 500, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Maximum sensitivity to use", 100, 1000)
+local change_interval = CreateConVar("randomat_secretsanta_randomsensitivity_change_interval", 15, {FCVAR_NONE, FCVAR_NOTIFY}, "Sensitivity change interval", 5, 60)
+local scale_min = CreateConVar("randomat_secretsanta_randomsensitivity_scale_min", 25, {FCVAR_NONE, FCVAR_NOTIFY}, "Minimum sensitivity to use", 10, 100)
+local scale_max = CreateConVar("randomat_secretsanta_randomsensitivity_scale_max", 500, {FCVAR_NONE, FCVAR_NOTIFY}, "Maximum sensitivity to use", 100, 1000)
 
 local timerAndHookIds = {}
 

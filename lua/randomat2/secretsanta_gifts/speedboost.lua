@@ -3,7 +3,7 @@ local GIFT = {}
 GIFT.Name = "Speed Boost"
 GIFT.Id = "speedboost"
 
-local speedboost_mult = CreateConVar("randomat_secretsanta_speedboost_mult", 1.25, FCVAR_ARCHIVE, "Speed multiplier (1.25=125%, a 25% boost).", 1.05, 2)
+local speedboost_mult = CreateConVar("randomat_secretsanta_speedboost_mult", 1.25, FCVAR_NONE, "Speed multiplier (1.25=125%, a 25% boost).", 1.05, 2)
 
 local multIds = {}
 local multIdPrefix = "SecretSantaSpeedBoost_"

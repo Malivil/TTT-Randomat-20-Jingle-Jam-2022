@@ -3,7 +3,7 @@ local GIFT = {}
 GIFT.Name = "Unlimited Ammo"
 GIFT.Id = "unlimitedammo"
 
-CreateConVar("randomat_secretsanta_unlimitedammo_affectbuymenu", 0, FCVAR_ARCHIVE, "Affects buy menu weapons.")
+CreateConVar("randomat_secretsanta_unlimitedammo_affectbuymenu", 0, FCVAR_NONE, "Affects buy menu weapons.")
 
 local hookIds = {}
 

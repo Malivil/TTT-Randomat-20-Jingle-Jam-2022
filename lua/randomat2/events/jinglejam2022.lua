@@ -12,7 +12,7 @@ util.AddNetworkString("RdmtJingleJam2022Begin")
 util.AddNetworkString("RdmtJingleJam2022Donation")
 util.AddNetworkString("RdmtJingleJam2022RoundSound")
 
-CreateConVar("randomat_jinglejam2022_mult", 1, FCVAR_ARCHIVE, "The multiplier used when calculating the number of credits to win", 0.1, 5)
+CreateConVar("randomat_jinglejam2022_mult", 1, FCVAR_NONE, "The multiplier used when calculating the number of credits to win", 0.1, 5)
 
 EVENT.Title = "Jingle Jam 2022"
 EVENT.Description = "Let's raise some credits for charity! Open the shop menu to donate"

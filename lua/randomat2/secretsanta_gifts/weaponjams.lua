@@ -11,9 +11,9 @@ util.AddNetworkString("RdmtSecretSantaWeaponJamsEnd")
 GIFT.Name = "Weapon Jams"
 GIFT.Id = "weaponjams"
 
-local weaponjams_interval_min = CreateConVar("randomat_secretsanta_weaponjams_interval_min", 30, FCVAR_ARCHIVE, "Minimum time between jams", 1, 60)
-local weaponjams_interval_max = CreateConVar("randomat_secretsanta_weaponjams_interval_max", 60, FCVAR_ARCHIVE, "Maximum time between jams", 2, 120)
-local weaponjams_duration = CreateConVar("randomat_secretsanta_weaponjams_duration", 5, FCVAR_ARCHIVE, "Weapon jam duration", 1, 30)
+local weaponjams_interval_min = CreateConVar("randomat_secretsanta_weaponjams_interval_min", 30, FCVAR_NONE, "Minimum time between jams", 1, 60)
+local weaponjams_interval_max = CreateConVar("randomat_secretsanta_weaponjams_interval_max", 60, FCVAR_NONE, "Maximum time between jams", 2, 120)
+local weaponjams_duration = CreateConVar("randomat_secretsanta_weaponjams_duration", 5, FCVAR_NONE, "Weapon jam duration", 1, 30)
 
 local function GetInterval()
     local interval_min = weaponjams_interval_min:GetInt()

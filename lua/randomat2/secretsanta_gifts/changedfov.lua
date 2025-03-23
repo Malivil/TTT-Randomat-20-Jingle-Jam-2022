@@ -5,8 +5,8 @@ util.AddNetworkString("RdmtSecretSantaChangedFOVBegin")
 GIFT.Name = "Changed FOV"
 GIFT.Id = "changedfov"
 
-local fov_scale = CreateConVar("randomat_secretsanta_changedfov_scale", 1.5, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "FOV increase scale", 1.1, 2.0)
-local fov_scale_ironsight = CreateConVar("randomat_secretsanta_changedfov_scale_ironsight", 1.0, {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Ironsighted FOV increase scale", 0.8, 2.0)
+local fov_scale = CreateConVar("randomat_secretsanta_changedfov_scale", 1.5, {FCVAR_NONE, FCVAR_NOTIFY}, "FOV increase scale", 1.1, 2.0)
+local fov_scale_ironsight = CreateConVar("randomat_secretsanta_changedfov_scale_ironsight", 1.0, {FCVAR_NONE, FCVAR_NOTIFY}, "Ironsighted FOV increase scale", 0.8, 2.0)
 
 local timerIds = {}
 local originalFOV = {}

@@ -14,7 +14,7 @@ function SECRETSANTA:RegisterGift(gift, isNaughty)
     end
 
     -- Create the "enabled" ConVar for each gift
-    local enabled = CreateConVar("randomat_secretsanta_" .. gift.Id .. "_enabled", "1", FCVAR_ARCHIVE, "Whether this gift is enabled.", 0, 1)
+    local enabled = CreateConVar("randomat_secretsanta_" .. gift.Id .. "_enabled", "1", FCVAR_NONE, "Whether this gift is enabled.", 0, 1)
     gift.Enabled = function()
         return enabled:GetBool()
     end
@@ -31,8 +31,8 @@ local EVENT = {}
 util.AddNetworkString("RdmtSecretSantaBegin")
 util.AddNetworkString("RdmtSecretSantaChoose")
 
-CreateConVar("randomat_secretsanta_niceoptions", 2, FCVAR_ARCHIVE, "The number of nice gift options to give each player", 1, 10)
-CreateConVar("randomat_secretsanta_naughtyoptions", 1, FCVAR_ARCHIVE, "The number of naughty gift options to give each player", 1, 10)
+CreateConVar("randomat_secretsanta_niceoptions", 2, FCVAR_NONE, "The number of nice gift options to give each player", 1, 10)
+CreateConVar("randomat_secretsanta_naughtyoptions", 1, FCVAR_NONE, "The number of naughty gift options to give each player", 1, 10)
 
 EVENT.Title = "Secret Santa"
 EVENT.Description = "Every player gets a choice of presents to send, in secret. Will you be nice... or naughty?"

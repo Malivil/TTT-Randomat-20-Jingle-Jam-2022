@@ -7,7 +7,7 @@ local MathRound = math.Round
 GIFT.Name = "Reduce Health"
 GIFT.Id = "reducehp"
 
-local reducehp_factor = CreateConVar("randomat_secretsanta_reducehp_factor", "0.5", FCVAR_ARCHIVE, "The reduction factor (0.5 = 50% less HP).", 0.05, 0.95)
+local reducehp_factor = CreateConVar("randomat_secretsanta_reducehp_factor", "0.5", FCVAR_NONE, "The reduction factor (0.5 = 50% less HP).", 0.05, 0.95)
 
 function GIFT:Choose(owner, target)
     local factor = 1 - reducehp_factor:GetFloat()

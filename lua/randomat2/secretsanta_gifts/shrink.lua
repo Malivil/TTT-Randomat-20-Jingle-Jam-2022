@@ -3,7 +3,7 @@ local GIFT = {}
 GIFT.Name = "Shrink Player"
 GIFT.Id = "shrink"
 
-local shrink_scale = CreateConVar("randomat_secretsanta_shrink_scale", "0.5", FCVAR_ARCHIVE, "The shrinking scale factor", 0.1, 0.9)
+local shrink_scale = CreateConVar("randomat_secretsanta_shrink_scale", "0.5", FCVAR_NONE, "The shrinking scale factor", 0.1, 0.9)
 
 function GIFT:Choose(owner, target)
     local scale = shrink_scale:GetFloat()

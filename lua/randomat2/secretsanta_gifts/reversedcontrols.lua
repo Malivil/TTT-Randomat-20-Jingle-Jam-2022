@@ -6,7 +6,7 @@ util.AddNetworkString("RdmtSecretSantaReversedControlsEnd")
 GIFT.Name = "Reversed Controls"
 GIFT.Id = "reversedcontrols"
 
-local reversedcontrols_hardmode = CreateConVar("randomat_secretsanta_reversedcontrols_hardmode", "1", {FCVAR_ARCHIVE, FCVAR_NOTIFY}, "Whether to swap Jump/Crouch", 0, 1)
+local reversedcontrols_hardmode = CreateConVar("randomat_secretsanta_reversedcontrols_hardmode", "1", {FCVAR_NONE, FCVAR_NOTIFY}, "Whether to swap Jump/Crouch", 0, 1)
 
 local hookIds = {}
 

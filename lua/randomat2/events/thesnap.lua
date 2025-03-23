@@ -1,7 +1,7 @@
 local EVENT = {}
 
-CreateConVar("randomat_thesnap_fadetime", 5, FCVAR_ARCHIVE, "The amount of time the \"Five years later\" fade lasts", 3, 60)
-CreateConVar("randomat_thesnap_deathdelay", 5, FCVAR_ARCHIVE, "The amount of time before the chosen players are killed", 1, 60)
+CreateConVar("randomat_thesnap_fadetime", 5, FCVAR_NONE, "The amount of time the \"Five years later\" fade lasts", 3, 60)
+CreateConVar("randomat_thesnap_deathdelay", 5, FCVAR_NONE, "The amount of time before the chosen players are killed", 1, 60)
 
 EVENT.Title = "The Snap"
 EVENT.Description = "Thanos has activated the Infinity Gauntlet... say goodbye to 1/2 of your friends"
