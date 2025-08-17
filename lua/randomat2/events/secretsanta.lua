@@ -45,8 +45,7 @@ local plyGifts = {}
 
 local function ChooseRandomOptions(options, gifts, giftKeys, giftCount, giftOptions)
     local chosen = {}
-    local count = 1
-    while count <= giftOptions do
+    for count = 1, giftOptions, 0 do
         local idx = math.random(1, giftCount)
 
         -- If we've already chosen this one (yay GMod randomization) then try again
