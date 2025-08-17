@@ -45,21 +45,22 @@ local plyGifts = {}
 
 local function ChooseRandomOptions(options, gifts, giftKeys, giftCount, giftOptions)
     local chosen = {}
-    for count = 1, giftOptions, 0 do
+    local count = 1
+    while count <= giftOptions do
         local idx = math.random(1, giftCount)
 
         -- If we've already chosen this one (yay GMod randomization) then try again
-        if table.HasValue(chosen, idx) then continue end
-
-        local key = giftKeys[idx]
-        local gift = gifts[key]
-        if gift:Enabled() and (not gift.Condition or gift:Condition()) then
-            table.insert(options, {
-                id = key,
-                name = gift.name or gift.Name
-            })
-            table.insert(chosen, idx)
-            count = count + 1
+        if not table.HasValue(chosen, idx) then
+            local key = giftKeys[idx]
+            local gift = gifts[key]
+            if gift:Enabled() and (not gift.Condition or gift:Condition()) then
+                table.insert(options, {
+                    id = key,
+                    name = gift.name or gift.Name
+                })
+                table.insert(chosen, idx)
+                count = count + 1
+            end
         end
     end
 end
