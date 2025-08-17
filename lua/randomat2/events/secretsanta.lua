@@ -50,17 +50,19 @@ local function ChooseRandomOptions(options, gifts, giftKeys, giftCount, giftOpti
         local idx = math.random(1, giftCount)
 
         -- If we've already chosen this one (yay GMod randomization) then try again
-        if not table.HasValue(chosen, idx) then
-            local key = giftKeys[idx]
-            local gift = gifts[key]
-            if gift:Enabled() and (not gift.Condition or gift:Condition()) then
-                table.insert(options, {
-                    id = key,
-                    name = gift.name or gift.Name
-                })
-                table.insert(chosen, idx)
-                count = count + 1
-            end
+        if table.HasValue(chosen, idx) then
+            continue
+        end
+
+        local key = giftKeys[idx]
+        local gift = gifts[key]
+        if gift:Enabled() and (not gift.Condition or gift:Condition()) then
+            table.insert(options, {
+                id = key,
+                name = gift.name or gift.Name
+            })
+            table.insert(chosen, idx)
+            count = count + 1
         end
     end
 end
