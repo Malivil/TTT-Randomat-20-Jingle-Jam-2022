@@ -15,7 +15,7 @@ _ttt_randomat_jinglealltheway_min_players_ - Default: 0 - The minimum number of 
 _ttt_randomat_jinglealltheway_weight_ - Default: -1 - The weight this event should use during the randomized event selection process.
 
 ## Jingle Jam 2022
-_Suggested By_: Malivil\
+_Contributed By_: Malivil\
 Let's raise some credits for charity! Open the shop menu to donate
 \
 \
