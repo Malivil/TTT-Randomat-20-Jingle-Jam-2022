@@ -15,7 +15,6 @@ Randomat:register(EVENT)
 
 local choiceName = nil
 net.Receive("RdmtSecretSantaBegin", function()
-    local ply = LocalPlayer()
     local choices = net.ReadTable()
 
     secretSantaFrame = vgui.Create("DFrame")
@@ -42,7 +41,7 @@ net.Receive("RdmtSecretSantaBegin", function()
         net.Start("RdmtSecretSantaChoose")
         net.WriteString(choice)
         net.SendToServer()
-        ply:PrintMessage(HUD_PRINTTALK, "You chose: " .. choiceName)
+        Randomat.Client:PrintMessage(HUD_PRINTTALK, "You chose: " .. choiceName)
 
         secretSantaFrame:Close()
         secretSantaFrame = nil

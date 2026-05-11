@@ -1,8 +1,7 @@
 net.Receive("RdmtSecretSantaFlipScreenBegin", function()
-    local client = LocalPlayer()
     local view = { origin = vector_origin, angles = angle_zero, fov = 0 }
     hook.Add("CalcView", "RdmtSecretSantaFlipScreen_CalcView", function(ply, origin, angles, fov)
-        if not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() or ply ~= client then return end
+        if not IsPlayer(ply) or not ply:Alive() or ply:IsSpec() or ply ~= Randomat.Client then return end
 
         view.origin = origin
         view.angles = angles
@@ -22,7 +21,7 @@ net.Receive("RdmtSecretSantaFlipScreenBegin", function()
     end)
 
     hook.Add("InputMouseApply", "RdmtSecretSantaFlipScreen_InputMouseApply", function(cmd, x, y, ang)
-        if not IsPlayer(client) or not client:Alive() or client:IsSpec() then return end
+        if not Randomat.Client:Alive() or Randomat.Client:IsSpec() then return end
 
         ang.yaw = ang.yaw + (x / 50)
         ang.pitch = math.Clamp(ang.pitch - y / 50, -89, 89)

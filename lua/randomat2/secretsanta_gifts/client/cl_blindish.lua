@@ -3,11 +3,10 @@ local function IsTargetHighlighted(ply, target)
 end
 
 net.Receive("RdmtSecretSantaBlindishBegin", function()
-    local client = LocalPlayer()
     hook.Add("PreDrawHalos", "RdmtSecretSantaBlindish_PreDrawHalos", function()
         local alivePlys = {}
         for _, v in player.Iterator() do
-            if v ~= client and v:Alive() and not v:IsSpec() and not IsTargetHighlighted(client, v) then
+            if v ~= Randomat.Client and v:Alive() and not v:IsSpec() and not IsTargetHighlighted(Randomat.Client, v) then
                 table.insert(alivePlys, v)
             end
         end

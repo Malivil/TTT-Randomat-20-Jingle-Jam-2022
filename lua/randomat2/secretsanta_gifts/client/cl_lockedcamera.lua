@@ -1,9 +1,7 @@
 net.Receive("RdmtSecretSantaLockedCameraBegin", function()
-    local client = LocalPlayer()
-
     -- Prevents up/down movement with the mouse
     hook.Add("InputMouseApply", "RdmtSecretSantaChangedFOV_InputMouseApply", function(cmd, x, y, ang)
-        if not IsPlayer(client) or not client:Alive() or client:IsSpec() then return end
+        if  not Randomat.Client:Alive() or Randomat.Client:IsSpec() then return end
 
         ang.pitch = 0
         ang.yaw = ang.yaw - (x / 50)

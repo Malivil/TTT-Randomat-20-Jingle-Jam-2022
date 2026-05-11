@@ -18,7 +18,6 @@ end
 
 Randomat:register(EVENT)
 
-local client = nil
 local donationGoal = nil
 local donationCurrent = 0
 local donationMet = false
@@ -30,7 +29,7 @@ local function CreateDonateMenu(dsheet)
     dform:StretchToParent(0, 0, 0, 0)
     dform:SetAutoSize(false)
 
-    if client:GetCredits() <= 0 then
+    if Randomat.Client:GetCredits() <= 0 then
         dform:Help(GetTranslation("donate_no_credits"))
         return dform
     end
@@ -45,7 +44,7 @@ local function CreateDonateMenu(dsheet)
     local dslider = vgui.Create("DNumSlider", dform)
     dslider:SetSize(100, 25)
     dslider:SetText(GetTranslation("equip_donation_amount"))
-    dslider:SetMinMax(0, client:GetCredits())
+    dslider:SetMinMax(0, Randomat.Client:GetCredits())
     dslider:SetDefaultValue(0)
     dslider:SetDecimals(0)
 
@@ -96,7 +95,6 @@ net.Receive("RdmtJingleJam2022Begin", function()
     LANG.AddToLanguage("english", "equip_donation_message", "Donate Message")
     LANG.AddToLanguage("english", "equip_donation_anon", "Donate Anonymously")
 
-    client = LocalPlayer()
     donationGoal = net.ReadUInt(8)
     donationCurrent = 0
     donationMet = false

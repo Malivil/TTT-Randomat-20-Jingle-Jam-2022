@@ -1,8 +1,7 @@
 net.Receive("RdmtSecretSantaReversedControlsBegin", function()
-    local client = LocalPlayer()
     local hardmode = net.ReadBool()
     hook.Add("StartCommand", "RdmtSecretSantaReversedControls_StartCommand", function(ply, cmd)
-        if ply ~= client then return end
+        if ply ~= Randomat.Client then return end
 
         -- Make the player move the opposite direction
         cmd:SetForwardMove(-cmd:GetForwardMove())
@@ -29,7 +28,7 @@ net.Receive("RdmtSecretSantaReversedControlsBegin", function()
 
     -- Override the sprint key so the player can sprint forward while holding the back key
     hook.Add("TTTSprintKey", "RdmtSecretSantaReversedControls_TTTSprintKey", function(ply)
-        if ply ~= client then return end
+        if ply ~= Randomat.Client then return end
 
         return IN_BACK
     end)

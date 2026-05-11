@@ -131,8 +131,7 @@ end
 net.Receive("RdmtSecretSantaParanoiaBegin", function()
     local delay_min = net.ReadUInt(8)
     local delay_max = math.max(delay_min, net.ReadUInt(8))
-    local client = LocalPlayer()
-    startTimer("RdmtSecretSantaParanoia", client, delay_min, delay_max)
+    startTimer("RdmtSecretSantaParanoia", Randomat.Client, delay_min, delay_max)
 end)
 
 net.Receive("RdmtSecretSantaParanoiaEnd", function()
